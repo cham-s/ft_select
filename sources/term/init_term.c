@@ -1,6 +1,6 @@
 #include "ft_select.h"
 
-void	init_terminal_data(char **term_buffer)
+void	init_term_data(char **term_buffer)
 {
 	char	*termtype;
 	int		success;
@@ -19,7 +19,7 @@ void	init_terminal_data(char **term_buffer)
 	}
 }
 
-void	interrogate_terminal(void)
+void	interrogate_term(void)
 {
 	int		height;
 	int		width;

@@ -1,6 +1,6 @@
 #include "ft_select.h"
 
-void	get_cstr(char *ret ,char *c, char **term_buffer)
+void	get_cstr(char *ret , char *c, char **term_buffer)
 {
 	ret = tgetstr(c, term_buff);
 }

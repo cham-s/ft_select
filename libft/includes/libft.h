@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include "get_next_line.h"
+# define TRUE	1
+# define FALSE	0
 
 typedef	struct		s_list
 {
@@ -102,5 +104,6 @@ int					ft_stronlyhas(const char *s, char c);
 size_t				size_to_allocate(const char *s, char c);
 char				**ft_splitspaces(char const *s);
 size_t				ft_tablen(char **table);
+void				ft_destroylst(t_list **alst);
 
 #endif
