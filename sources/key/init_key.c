@@ -47,28 +47,29 @@ t_key	*getkey(const char *keybuff)
 	return (newkey(KEY_C_NONE, keybuff));
 }
 
-void	key_react(t_key *key)
+void	key_react(t_key *key, int *index, int ac, char **av)
 {
+
+	//index;
+	(void)index;
+	int i = 3;
+	static int y = 1;
 	if (key->type == KEY_C_DOWN)
-		ft_putendl("down key");
-	if (key->type == KEY_C_RIGHT)
-		ft_putendl("right key");
-	if (key->type == KEY_C_UP)
-		ft_putendl("up key");
-	if (key->type == KEY_C_LEFT)
-		ft_putendl("left key");
-	if (key->type == KEY_C_ESCAPE)
-		ft_putendl("escape key");
-	if (key->type == KEY_C_RETURN)
-		ft_putendl("return key");
-	if (key->type == KEY_C_TAB)
+		lstprint(ac, av);
+	else if (key->type == KEY_C_UP)
+	{
+		ft_putstr(tgetstr("up", NULL));
+		if (y == 1)
+			tgoto(tgetstr("cm", NULL), 0, i);
+	}
+	else if (key->type == KEY_C_ESCAPE)
+		exit(0);
+	else if (key->type == KEY_C_TAB)
 		ft_putendl("tab key");
-	if (key->type == KEY_C_SPACE)
-		ft_putendl("space key");
-	if (key->type == KEY_C_BACKSPACE)
-		ft_putendl("backspace key");
-	if (key->type == KEY_C_DELETE)
-		ft_putendl("backspace key");
-	if (key->type == KEY_C_NONE)
-		ft_putendl("undefined key");
+	else if (key->type == KEY_C_SPACE)
+		ft_putstr(tgetstr("mr", NULL));
+	else if (key->type == KEY_C_BACKSPACE)
+		ft_putstr(tgetstr("dl", NULL));
+	else if (key->type == KEY_C_DELETE)
+		ft_putstr(tgetstr("dl", NULL));
 }

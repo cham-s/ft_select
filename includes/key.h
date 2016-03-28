@@ -27,7 +27,8 @@ typedef struct	s_functs_tab
 }				t_functs_tab;
 
 void	key_destroy(t_key *key);
-void	key_react(t_key *key);
+//void	key_react(t_key *key, int *index, char **av);
+void	key_react(t_key *key, int *index,int ac, char **av);
 t_key	*getkey(const char *keybuff);
 t_key	*newkey(int keytype, const char *buffkey);
 t_key	*getkey(const char *keybuff);
