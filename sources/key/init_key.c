@@ -47,21 +47,13 @@ t_key	*getkey(const char *keybuff)
 	return (newkey(KEY_C_NONE, keybuff));
 }
 
-void	key_react(t_key *key, int *index, int ac, char **av)
+void	key_react(t_key *key, t_entry *list)
 {
 
-	//index;
-	(void)index;
-	int i = 3;
-	static int y = 1;
 	if (key->type == KEY_C_DOWN)
-		lstprint(ac, av);
+		GO_DOWN;
 	else if (key->type == KEY_C_UP)
-	{
-		ft_putstr(tgetstr("up", NULL));
-		if (y == 1)
-			tgoto(tgetstr("cm", NULL), 0, i);
-	}
+		GO_UP;
 	else if (key->type == KEY_C_ESCAPE)
 		exit(0);
 	else if (key->type == KEY_C_TAB)
