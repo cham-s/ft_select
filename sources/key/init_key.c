@@ -1,4 +1,4 @@
-#include "key.h"
+#include "ft_select.h"
 
 t_key	*newkey(int keytype, const char *buffkey)
 {
@@ -47,11 +47,21 @@ t_key	*getkey(const char *keybuff)
 	return (newkey(KEY_C_NONE, keybuff));
 }
 
-void	key_react(t_key *key, t_entry *list)
+void	key_react(t_key *key, t_entlist *l)
 {
-
 	if (key->type == KEY_C_DOWN)
-		GO_DOWN;
+	{
+		if (!l->list)
+		{
+			GO_HOME;
+			l->list = l->head;
+		}
+		else
+		{
+			l->list = l->list->next;
+			GO_DOWN;
+		}
+	}
 	else if (key->type == KEY_C_UP)
 		GO_UP;
 	else if (key->type == KEY_C_ESCAPE)
@@ -59,7 +69,10 @@ void	key_react(t_key *key, t_entry *list)
 	else if (key->type == KEY_C_TAB)
 		ft_putendl("tab key");
 	else if (key->type == KEY_C_SPACE)
+	{
+		ft_putstr(tgetstr("dl", NULL));
 		ft_putstr(tgetstr("mr", NULL));
+	}
 	else if (key->type == KEY_C_BACKSPACE)
 		ft_putstr(tgetstr("dl", NULL));
 	else if (key->type == KEY_C_DELETE)

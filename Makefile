@@ -3,7 +3,7 @@ CC = clang
 LIB = libft/libft.a -ltermcap
 FLAGS = -g -Wall -Werror -Wextra
 INCLUDES = -I includes -I libft/includes
-OBJS = init_entry.o main.o init_term.o parser.o attr.o nor_key.o dir_key.o init_key.o
+OBJS = main.o init_term.o parser.o attr.o nor_key.o dir_key.o init_key.o init_entry.o 
 .PHONY: all clean fclean re
 
 VPATH = sources/term:sources/select:sources/key

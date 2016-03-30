@@ -13,8 +13,15 @@ t_entry	*newentry(char *str)
 	new->flags = (t_opt *)ft_memalloc(sizeof(t_opt)); 
 	if (!new->flags)
 		return (NULL);
+	new->head = new;
 	init_flags(new->flags);
 	return (new);
+}
+
+void	init_entlist(t_entlist *l)
+{
+	l->head = NULL;
+	l->list = NULL;
 }
 
 void	addentry(t_entry **list, t_entry *new)
@@ -22,7 +29,7 @@ void	addentry(t_entry **list, t_entry *new)
 	t_entry *tmp;
 
 	tmp =  *list;
-	if (!*list)
+	if (!tmp)
 		*list = new;
 	else
 	{
@@ -66,7 +73,7 @@ void	lstprint(t_entry **list)
 	tmp = *list;
 	while (tmp)
 	{
-		ft_putstr(tmp->line);
+		ft_putendl(tmp->line);
 		tmp = tmp->next;
 	}
 }

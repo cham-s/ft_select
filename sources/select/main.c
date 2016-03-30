@@ -1,6 +1,6 @@
 #include "ft_select.h"
 
-void	int_flags(t_opt *flags)
+void	init_flags(t_opt *flags)
 {
 	flags->selected = 0;
 	flags->visible = 0;
@@ -15,27 +15,28 @@ int	ft_putc(int c)
 
 int	launcher(int ac, char **av)
 {
-	char buf[MAX_KEY_LENGTH];
-	int index;
-	t_entry *list;
+	char		buf[MAX_KEY_LENGTH];
+	t_entlist	l;
 
-
-	filllist(ac, av, &list);
-	index = 1;
+	init_entlist(&l);
+	filllist(ac, av, &l.list);
+	l.head = l.list;
 	CLEAR_SCREEN;
 	GO_HOME;
-	lstprint(&list);
+	lstprint(&l.list);
 	GO_HOME;
 	while (1)
 	{
 		t_key *key;
 		read(0, buf, MAX_KEY_LENGTH);
 		key = getkey(buf);
-		key_react(key, list);
+		key_react(key, &l);
 		key_destroy(key);
 	}
+	entry_destroylist(l.list);
 	return (0);
 }
+
 void winsig(int sig)
 {
 	struct winsize w;
