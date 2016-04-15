@@ -40,17 +40,17 @@ void	addentry(t_entry **list, t_entry *new)
 	}
 }
 
-void	filllist(int ac, char **av, t_entry **list)
-{
-	int i;
+/* void	getargs(int ac, char **av, t_entry **list) */
+/* { */
+/* 	int i; */
 
-	i = 1;
-	while (ac-- > 1)
-	{
-		addentry(list, newentry(av[i]));
-		i++;
-	}
-}
+/* 	i = 1; */
+/* 	while (ac-- > 1) */
+/* 	{ */
+/* 		addentry(list, newentry(av[i])); */
+/* 		i++; */
+/* 	} */
+/* } */
 
 void	entry_destroylist(t_entry *list)
 {

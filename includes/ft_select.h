@@ -45,6 +45,15 @@ typedef struct	s_entry
 	struct s_entry	*prev;
 }				t_entry;
 
+typedef struct t_ent
+{
+	int		pos;
+	t_list	*list;
+	int		*banned;
+	char	**args;
+	int		tablen;
+}				t_ent;
+
 typedef	struct	s_entlist
 {
 	t_entry	*head;
@@ -63,7 +72,7 @@ typedef struct	s_functs_tab
 	int		(*f)(const char *buffkey);
 }				t_functs_tab;
 
-void	key_react(t_key *key, t_entlist *list);
+void	key_react(t_key *key, t_ent *e);
 void	key_destroy(t_key *key);
 t_key	*getkey(const char *keybuff);
 t_key	*newkey(int keytype, const char *buffkey);
@@ -81,15 +90,15 @@ int		key_is_backspace(const char *buffkey);
 int		key_is_delete(const char *buffkey);
 void	init_term_data();
 void	interrogate_term(void);
-void	getargs(char **av, int ac, t_list **list);
 void	init_raw_mode(void);
 void	reset_default_mode(void);
 void	lstprint(t_entry **list);
 void	init_flags(t_opt *flags);
 void	entry_destroylist(t_entry *list);
-void	filllist(int ac, char **av, t_entry **list);
+void	getargs(int ac, char **av, t_entry **list);
 void	addentry(t_entry **list, t_entry *new);
 void	init_entlist(t_entlist *l);
 t_entry	*newentry(char *str);
+int		tab_len(char **tabl);
 
 #endif

@@ -47,31 +47,40 @@ t_key	*getkey(const char *keybuff)
 	return (newkey(KEY_C_NONE, keybuff));
 }
 
-void	key_react(t_key *key, t_entlist *l)
+void	key_react(t_key *key, t_ent *e)
 {
 	if (key->type == KEY_C_DOWN)
 	{
-		if (!l->list)
-		{
-			GO_HOME;
-			l->list = l->head;
-		}
-		else
-		{
-			l->list = l->list->next;
-			GO_DOWN;
-		}
+		ft_putstr(tgetstr("ue", NULL));
+		ft_putstr(tgetstr("dl", NULL));
+		ft_putendl(e->args[e->pos]);
+		ft_putstr(tgetstr("us", NULL));
+		ft_putstr(tgetstr("do", NULL));
+		e->pos++;
+		if (e->pos > e->tablen)
+			e->pos = 0;
+		//ft_putstr(tgoto(ft_putstr(e->args[e->pos]), e->pos, ft_strlen(e->args[e->pos])));
 	}
-	else if (key->type == KEY_C_UP)
-		GO_UP;
+	else if (key->type == KEY_C_LEFT)
+	{
+		ft_putstr(tgetstr("te", NULL));
+		exit(4);
+	}
+	/* else if (key->type == KEY_C_UP) */
+	/* { */
+	/* } */
 	else if (key->type == KEY_C_ESCAPE)
-		exit(0);
+	{
+		ft_putstr(tgetstr("te", NULL));
+		exit(4);
+	}
 	else if (key->type == KEY_C_TAB)
 		ft_putendl("tab key");
 	else if (key->type == KEY_C_SPACE)
 	{
 		ft_putstr(tgetstr("dl", NULL));
 		ft_putstr(tgetstr("mr", NULL));
+		ft_putstr(tgetstr("se", NULL));
 	}
 	else if (key->type == KEY_C_BACKSPACE)
 		ft_putstr(tgetstr("dl", NULL));
