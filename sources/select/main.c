@@ -13,27 +13,25 @@ int	ft_putc(int c)
 	return (0);
 }
 
-int	launcher(int ac, char **av)
+int	launcher(int ac, char **av, t_entlist *l)
 {
 	char		buf[MAX_KEY_LENGTH];
-	t_entlist	l;
 
-	init_entlist(&l);
-	filllist(ac, av, &l.list);
-	l.head = l.list;
-	CLEAR_SCREEN;
-	GO_HOME;
-	lstprint(&l.list);
-	GO_HOME;
+	filllist(ac, av, l);
+	l->head = l->list;
+	CLEAR_SCREEN(l->fd);
+	GO_HOME(l->fd);
+	//lstprint(&l->list);
+	GO_HOME(l->fd);
 	while (1)
 	{
 		t_key *key;
 		read(0, buf, MAX_KEY_LENGTH);
 		key = getkey(buf);
-		key_react(key, &l);
+		key_react(key, l);
 		key_destroy(key);
 	}
-	entry_destroylist(l.list);
+	entry_destroylist(l->list);
 	return (0);
 }
 
@@ -53,6 +51,10 @@ void winsig(int sig)
 
 int	main(int ac, char **av)
 {
+	t_entlist	l;
+
+	init_entlist(&l);
+	l.fd = open("/dev/tty", O_WRONLY);
 	if (!(ac > 1))
 	{
 		ft_putendl_fd("usage: ./ft_select args[...]", 2);
@@ -61,7 +63,7 @@ int	main(int ac, char **av)
 	signal(SIGWINCH, winsig);
 	init_term_data();
 	init_raw_mode();
-	launcher(ac, av);
+	launcher(ac, av, &l);
 	reset_default_mode();
 	return (0);
 }

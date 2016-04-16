@@ -20,8 +20,8 @@ void	key_destroy(t_key *key)
 
 t_key	*getkey(const char *keybuff)
 {
-	int i;
-	static t_functs_tab funcs[] = {
+	int		i;
+	static	t_functs_tab funcs[] = {
 		{KEY_C_CTRL_D, &key_is_ctrl_d},
 		{KEY_C_TAB, &key_is_tab},
 		{KEY_C_UP, &key_is_up_arrow},
@@ -53,28 +53,46 @@ void	key_react(t_key *key, t_entlist *l)
 	{
 		if (!l->list)
 		{
-			GO_HOME;
+			GO_HOME(l->fd);
 			l->list = l->head;
 		}
 		else
 		{
+			ft_putstr_fd(l->list->line, l->fd);
+			l->list->prev = l->list;
 			l->list = l->list->next;
-			GO_DOWN;
+			GO_DOWN(l->fd);
 		}
 	}
 	else if (key->type == KEY_C_UP)
-		GO_UP;
+	{
+		//ft_putendl_fd(l->list->line, l->fd);
+		if (l->list == l->head)
+		{
+			l->list = l->tail;
+			GO_DOWN(l->fd);
+		}
+		else
+		{
+			l->list = l->list->prev;
+			GO_UP(l->fd);
+		}
+	}
 	else if (key->type == KEY_C_ESCAPE)
 		exit(0);
 	else if (key->type == KEY_C_TAB)
-		ft_putendl("tab key");
+		ft_putendl_fd("tab key", l->fd);
 	else if (key->type == KEY_C_SPACE)
 	{
-		ft_putstr(tgetstr("dl", NULL));
-		ft_putstr(tgetstr("mr", NULL));
+		ft_putstr_fd(tgetstr("dl", NULL), l->fd);
+		REVERSEVIDEO(l->fd);
+		ft_putstr_fd(l->list->line, l->fd);
 	}
 	else if (key->type == KEY_C_BACKSPACE)
-		ft_putstr(tgetstr("dl", NULL));
-	else if (key->type == KEY_C_DELETE)
-		ft_putstr(tgetstr("dl", NULL));
+		ft_putstr_fd(tgetstr("dl", NULL), l->fd);
+	else if (key->type == KEY_C_RETURN)
+	{
+		lstprint(&l->list);
+		exit(EXIT_SUCCESS);
+	}
 }

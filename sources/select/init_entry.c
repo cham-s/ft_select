@@ -21,7 +21,9 @@ t_entry	*newentry(char *str)
 void	init_entlist(t_entlist *l)
 {
 	l->head = NULL;
+	l->tail = NULL;
 	l->list = NULL;
+	l->fd = -1;
 }
 
 void	addentry(t_entry **list, t_entry *new)
@@ -40,16 +42,25 @@ void	addentry(t_entry **list, t_entry *new)
 	}
 }
 
-void	filllist(int ac, char **av, t_entry **list)
+void	filllist(int ac, char **av, t_entlist *l)
 {
-	int i;
+	int		i;
+	t_entry	*tmp;
 
 	i = 1;
 	while (ac-- > 1)
 	{
-		addentry(list, newentry(av[i]));
+		addentry(&l->list, newentry(av[i]));
 		i++;
 	}
+	tmp = l->list;
+	if (tmp)
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+	}
+	l->tail = tmp;
+	l->head = l->list;
 }
 
 void	entry_destroylist(t_entry *list)

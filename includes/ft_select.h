@@ -8,14 +8,15 @@
 # include <signal.h>
 # include "libft.h"
 # define MAX_KEY_LENGTH 5
-# define CLEAR_SCREEN	ft_putstr(tgetstr("cl", NULL))
-# define GO_HOME		ft_putstr(tgetstr("ho", NULL))
-# define GO_UP			ft_putstr(tgetstr("up", NULL))
-# define GO_DOWN		ft_putstr(tgetstr("do", NULL))
-# define UNDERLINE		ft_putstr(tgetstr("us", NULL))
-# define ENDUNDER		ft_putstr(tgetstr("ue", NULL))
-# define TURNOFFALL		ft_putstr(tgetstr("me", NULL))
-# define REVERSEVIDEO	ft_putstr(tgetstr("mr", NULL))
+# define CLEAR_SCREEN(fd)	ft_putstr_fd(tgetstr("cl", NULL), fd)
+# define GO_HOME(fd)		ft_putstr_fd(tgetstr("ho", NULL), fd)
+# define GO_UP(fd)			ft_putstr_fd(tgetstr("up", NULL), fd)
+# define GO_DOWN(fd)		ft_putstr_fd(tgetstr("do", NULL), fd)
+# define UNDERLINE(fd)		ft_putstr_fd(tgetstr("us", NULL), fd)
+# define ENDUNDER(fd)		ft_putstr_fd(tgetstr("ue", NULL), fd)
+# define TURNOFFALL(fd)		ft_putstr_fd(tgetstr("me", NULL), fd)
+# define DELETELINE(fd)		ft_putstr_fd(tgetstr("mr", NULL), fd)
+# define REVERSEVIDEO(fd)	ft_putstr_fd(tgetstr("mr", NULL), fd)
 # define KEY_C_CTRL_D			0
 # define KEY_C_TAB				1
 # define KEY_C_UP				2
@@ -48,7 +49,9 @@ typedef struct	s_entry
 typedef	struct	s_entlist
 {
 	t_entry	*head;
+	t_entry	*tail;
 	t_entry	*list;
+	int		fd;
 }				t_entlist;
 
 typedef	struct	s_key
@@ -79,7 +82,7 @@ int		key_is_ctrl_d(const char *buffkey);
 int		key_is_tab(const char *buffkey);
 int		key_is_backspace(const char *buffkey);
 int		key_is_delete(const char *buffkey);
-void	init_term_data();
+void	init_term_data(void);
 void	interrogate_term(void);
 void	getargs(char **av, int ac, t_list **list);
 void	init_raw_mode(void);
@@ -87,7 +90,7 @@ void	reset_default_mode(void);
 void	lstprint(t_entry **list);
 void	init_flags(t_opt *flags);
 void	entry_destroylist(t_entry *list);
-void	filllist(int ac, char **av, t_entry **list);
+void	filllist(int ac, char **av, t_entlist *list);
 void	addentry(t_entry **list, t_entry *new);
 void	init_entlist(t_entlist *l);
 t_entry	*newentry(char *str);
