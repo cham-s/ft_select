@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/16 09:31:23 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 09:31:53 by cattouma         ###   ########.fr       */
+/*   Created: 2016/04/15 15:15:55 by cattouma          #+#    #+#             */
+/*   Updated: 2016/04/15 15:15:56 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static size_t	to_allocate(const char *s)
 	{
 		while (ft_isspace(*s))
 			s++;
-		if ((*s && (!ft_isspace(*s))) && ((ft_isspace(*(s + 1)))
-					|| *(s + 1) == '\0'))
+		if ((*s && (!ft_isspace(*s))) && ((ft_isspace(*(s + 1))) ||
+			*(s + 1) == '\0'))
 			size++;
 		if (*s)
 			s++;

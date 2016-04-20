@@ -6,10 +6,11 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 13:59:25 by cattouma          #+#    #+#             */
-/*   Updated: 2016/02/28 12:28:02 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/01/25 19:01:32 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 #include "libft.h"
 #include <sys/types.h>
 #include <fcntl.h>

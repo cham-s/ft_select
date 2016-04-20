@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/16 09:29:53 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 09:33:00 by cattouma         ###   ########.fr       */
+/*   Created: 2016/04/15 15:13:03 by cattouma          #+#    #+#             */
+/*   Updated: 2016/04/15 15:13:05 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(int c)
+int ft_isspace(int c)
 {
 	unsigned char tc;
 

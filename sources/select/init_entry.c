@@ -1,5 +1,13 @@
 #include "ft_select.h"
 
+/* void	init_ent(t_ent *e, char ** av) */
+/* { */
+/* 	e->args = NULL; */
+/* 	e->pos = 0; */
+/* 	e->args = tabdup(av); */
+/* 	e->tablen = tab_len(e->args); */
+/* } */
+
 t_entry	*newentry(char *str)
 {
 	t_entry *new;
@@ -10,49 +18,63 @@ t_entry	*newentry(char *str)
 	new->next = NULL;
 	new->prev = NULL;
 	new->line = ft_strdup(str);
-	new->flags = (t_opt *)ft_memalloc(sizeof(t_opt)); 
-	if (!new->flags)
-		return (NULL);
-	new->head = new;
-	init_flags(new->flags);
+	new->hl = 0;
 	return (new);
 }
 
-void	init_entlist(t_entlist *l)
-{
-	l->head = NULL;
-	l->list = NULL;
-}
-
-void	addentry(t_entry **list, t_entry *new)
+void	init_entlist(t_entlist *l, char **av, int ac)
 {
 	t_entry *tmp;
 
-	tmp =  *list;
+	l->head = NULL;
+	l->tail = NULL;
+	l->list = NULL;
+	getargs(ac, av, l);
+	l->head = l->list;
+	tmp = l->list;
+	while (tmp->next)
+		tmp = tmp->next;
+	l->tail = tmp;
+}
+
+void	addentry(t_entlist *l, t_entry *new)
+{
+	t_entry *tmp;
+	t_entry *slow;
+
+	tmp = l->list;
+	slow = l->list;
 	if (!tmp)
-		*list = new;
+	{
+		l->list = new;
+		l->tail = new;
+	}
 	else
 	{
 		while (tmp->next)
+		{
 			tmp = tmp->next;
+			tmp->prev = slow;
+			slow = slow->next;
+		}
 		tmp->next = new;
-		new->prev = tmp;
+		ft_putendl(tmp->line);
 	}
 }
 
-/* void	getargs(int ac, char **av, t_entry **list) */
-/* { */
-/* 	int i; */
+void	getargs(int ac, char **av, t_entlist *l)
+{
+	int i;
 
-/* 	i = 1; */
-/* 	while (ac-- > 1) */
-/* 	{ */
-/* 		addentry(list, newentry(av[i])); */
-/* 		i++; */
-/* 	} */
-/* } */
+	i = 1;
+	while (ac-- > 1)
+	{
+		addentry(l, newentry(av[i]));
+		i++;
+	}
+}
 
-void	entry_destroylist(t_entry *list)
+void	entry_destroy(t_entry *list)
 {
 	t_entry *tmp;
 
@@ -61,16 +83,15 @@ void	entry_destroylist(t_entry *list)
 		tmp = list;
 		list = list->next;
 		free(tmp->line);
-		free(tmp->flags);
 		free(tmp);
 	}
 }
 
-void	lstprint(t_entry **list)
+void	lstprint(t_entlist *l)
 {
 	t_entry *tmp;
 
-	tmp = *list;
+	tmp = l->list;
 	while (tmp)
 	{
 		ft_putendl(tmp->line);

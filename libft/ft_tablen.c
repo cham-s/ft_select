@@ -5,21 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/16 09:30:40 by cattouma          #+#    #+#             */
-/*   Updated: 2016/03/16 09:30:55 by cattouma         ###   ########.fr       */
+/*   Created: 2016/04/15 15:15:36 by cattouma          #+#    #+#             */
+/*   Updated: 2016/04/15 15:15:38 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_tablen(char **tab)
+size_t		ft_tablen(char **tabl)
 {
 	size_t i;
 
-	if (!tab)
-		return (0);
 	i = 0;
-	while (tab[i])
+	while (tabl[i])
 		i++;
 	return (i);
 }
