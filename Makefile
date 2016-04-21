@@ -1,6 +1,6 @@
 NAME = ft_select 
 CC = clang
-LIB = libft/libft.a -ltermcap
+LIB = libft/libft.a 
 FLAGS = -g -Wall -Werror -Wextra
 INCLUDES = -I includes -I libft/includes
 OBJS = main.o init_term.o parser.o attr.o nor_key.o dir_key.o init_key.o init_entry.o launcher.o 
@@ -11,8 +11,8 @@ VPATH = sources/term:sources/select:sources/key
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIB)
-	$(CC) $(FLAGS) $(INCLUDES) $(OBJS) $(LIB) -o $(NAME)
+$(NAME): $(LIB) $(OBJS) 
+	$(CC) $(FLAGS) $(INCLUDES) $(OBJS) $(LIB) -o $(NAME) -ltermcap
 
 $(LIB):
 	make -C libft/
