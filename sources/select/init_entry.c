@@ -19,6 +19,7 @@ t_entry	*newentry(char *str)
 	new->prev = NULL;
 	new->line = ft_strdup(str);
 	new->hl = 0;
+	new->us = 0;
 	return (new);
 }
 
@@ -31,6 +32,7 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	l->list = NULL;
 	getargs(ac, av, l);
 	l->head = l->list;
+	l->current = l->head;
 	tmp = l->list;
 	while (tmp->next)
 		tmp = tmp->next;
@@ -58,7 +60,6 @@ void	addentry(t_entlist *l, t_entry *new)
 			slow = slow->next;
 		}
 		tmp->next = new;
-		ft_putendl(tmp->line);
 	}
 }
 
@@ -92,9 +93,15 @@ void	lstprint(t_entlist *l)
 	t_entry *tmp;
 
 	tmp = l->list;
+	ft_putstr(CL);
 	while (tmp)
 	{
+		if (tmp->us)
+			ft_putstr(US);
+		if (tmp->hl)
+			ft_putstr(MR);
 		ft_putendl(tmp->line);
+		ft_putstr(ME);
 		tmp = tmp->next;
 	}
 }

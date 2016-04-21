@@ -51,7 +51,12 @@ void	key_react(t_key *key, t_entlist *l)
 {
 	if (key->type == KEY_C_DOWN)
 	{
-		(void)l;
+		l->current->us = 1;
+		lstprint(l);
+		l->current->us = 0;
+		l->current = l->current->next;
+		if (l->current == NULL)
+			l->current = l->head;
 	}
 	else if (key->type == KEY_C_LEFT)
 	{
@@ -70,7 +75,8 @@ void	key_react(t_key *key, t_entlist *l)
 		ft_putendl("tab key");
 	else if (key->type == KEY_C_SPACE)
 	{
-		(void)l;
+		l->current->hl = 1;
+		lstprint(l);
 	}
 	else if (key->type == KEY_C_BACKSPACE)
 		ft_putstr(tgetstr("dl", NULL));

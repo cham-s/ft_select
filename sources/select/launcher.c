@@ -4,8 +4,10 @@ int	launcher(t_entlist *l)
 {
 	char		buf[MAX_KEY_LENGTH];
 
+	ft_putstr(VI);
+	l->current->us = 1;
+	lstprint(l);
 	ft_putstr(HO);
-	//lstprint(l);
 	while (1)
 	{
 		t_key *key;

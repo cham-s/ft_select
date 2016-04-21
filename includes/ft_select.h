@@ -48,6 +48,7 @@ typedef struct	s_entry
 {
 	char			*line;
 	int				hl;
+	int				us;
 	struct s_entry	*next;
 	struct s_entry	*prev;
 }				t_entry;
@@ -66,6 +67,7 @@ typedef	struct	s_entlist
 	t_entry	*head;
 	t_entry *tail;
 	t_entry	*list;
+	t_entry	*current;
 }				t_entlist;
 
 typedef	struct	s_key
