@@ -49,26 +49,16 @@ t_key	*getkey(const char *keybuff)
 
 void	key_react(t_key *key, t_entlist *l)
 {
+	ft_putstr(CL);
 	if (key->type == KEY_C_DOWN)
 	{
 		l->current->us = 1;
-		lstprint(l);
-		l->current->us = 0;
-		l->current = l->current->next;
-		if (l->current == NULL)
-			l->current = l->head;
 	}
 	else if (key->type == KEY_C_LEFT)
 	{
 		entry_destroy(l->list);
 		ft_putstr(tgetstr("te", NULL));
 		ft_putstr(VE);
-		exit(4);
-	}
-	else if (key->type == KEY_C_ESCAPE)
-	{
-		entry_destroy(l->list);
-		ft_putstr(tgetstr("te", NULL));
 		exit(4);
 	}
 	else if (key->type == KEY_C_TAB)
@@ -82,4 +72,7 @@ void	key_react(t_key *key, t_entlist *l)
 		ft_putstr(tgetstr("dl", NULL));
 	else if (key->type == KEY_C_DELETE)
 		ft_putstr(tgetstr("dl", NULL));
+	l->current = l->current->next;
+	l->current = l->current == NULL? l->current = l->head : l->current;
+	lstprint(l);
 }

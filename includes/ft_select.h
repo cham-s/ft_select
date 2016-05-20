@@ -24,18 +24,17 @@
 # define TI				tgetstr("cm", NULL)
 # define TE				tgetstr("te", NULL)
 # define GOTO(c, l)		tgoto(CM, c, l)
-# define KEY_C_CTRL_D			0
-# define KEY_C_TAB				1
-# define KEY_C_UP				2
-# define KEY_C_DOWN				3
-# define KEY_C_RIGHT			4
-# define KEY_C_LEFT				5
-# define KEY_C_SPACE			6
-# define KEY_C_RETURN			7
-# define KEY_C_ESCAPE			8
-# define KEY_C_DELETE			9
-# define KEY_C_BACKSPACE		10	
-# define KEY_C_NONE				-1
+
+# define KEY_UP		4283163
+# define KEY_DOWN	4348699
+# define KEY_LEFT	4479771
+# define KEY_RIGHT	4414235
+# define KEY_ESC	4414235
+# define KEY_ENT	4325386
+# define KEY_TAB	4325385
+# define KEY_DEL	2117294875	
+# define KEY_BKSPC	2117294875	
+# define KEY_SPACE	2117271584	
 
 // typedef	struct	s_opt
 // {
@@ -68,6 +67,9 @@ typedef	struct	s_entlist
 	t_entry *tail;
 	t_entry	*list;
 	t_entry	*current;
+	int		fd;
+	int		wc;
+	int		wl;
 }				t_entlist;
 
 typedef	struct	s_key

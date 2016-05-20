@@ -7,15 +7,20 @@ int	ft_putc(int c)
 	return (0);
 }
 
-int	main(int ac, char **av)
+void	check_args(int ac)
 {
-	t_entlist l;
-
 	if (!(ac > 1))
 	{
 		ft_putendl_fd("usage: ./ft_select args[...]", 2);
 		exit(EXIT_FAILURE);
 	}
+}
+
+int	main(int ac, char **av)
+{
+	t_entlist l;
+
+	//use malloc instead
 	init_term_data();
 	init_raw_mode();
 	ft_putstr(tgetstr("ti", NULL));

@@ -1,9 +1,18 @@
 NAME = ft_select 
 CC = clang
+OBJDIR = obj
 LIB = libft/libft.a 
 FLAGS = -g -Wall -Werror -Wextra
 INCLUDES = -I includes -I libft/includes
-OBJS = main.o init_term.o parser.o attr.o nor_key.o dir_key.o init_key.o init_entry.o launcher.o 
+OBJS = $(OBJDIR)/main.o\
+	   $(OBJDIR)/init_term.o\
+	   $(OBJDIR)/parser.o\
+	   $(OBJDIR)/attr.o\
+	   $(OBJDIR)/nor_key.o\
+	   $(OBJDIR)/dir_key.o\
+	   $(OBJDIR)/init_key.o\
+	   $(OBJDIR)/init_entry.o\
+	   $(OBJDIR)/launcher.o \
 
 .PHONY: all clean fclean re
 
@@ -17,11 +26,12 @@ $(NAME): $(LIB) $(OBJS)
 $(LIB):
 	make -C libft/
 
-%.o : %.c 
+$(OBJDIR)/%.o : %.c 
+	@mkdir -p $(OBJDIR)
 	$(CC) -c $(FLAGS) $(INCLUDES) $< -o $@ 
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 
 fclean: clean
 	make fclean -C libft/

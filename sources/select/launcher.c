@@ -3,18 +3,20 @@
 int	launcher(t_entlist *l)
 {
 	char		buf[MAX_KEY_LENGTH];
+	int			is_running = 1;
+	int			ret;
 
-	ft_putstr(VI);
-	l->current->us = 1;
-	lstprint(l);
-	ft_putstr(HO);
-	while (1)
+	//ft_putstr(VI);
+	//ft_putstr(CL);
+	(void)l;
+	//lstprint(l);
+	while (is_running)
 	{
-		t_key *key;
-		read(0, buf, MAX_KEY_LENGTH);
-		key = getkey(buf);
-		key_react(key, l);
-		key_destroy(key);
+		unsigned int	key;
+		ret = read(0, buf, MAX_KEY_LENGTH);
+		//
+		buf[ret] = '\0';
+		printf("%d\n", *(int *)buf);
 	}
 	return (0);
 }
