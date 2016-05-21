@@ -1,40 +1,32 @@
 #include "ft_select.h"
 
-void	init_raw_mode(void)
+void	init_raw_mode(t_entlist *l, struct termios *old)
 {
 	struct termios termattr;
 
-	if (tcgetattr(0, &termattr) == -1)
+	if (tcgetattr(l->fd, old) == -1)
 	{
-		ft_putendl_fd("probelem with tgetattr", 2);
+		ft_putendl_fd("failed to tgetattr", 2);
 		exit(EXIT_FAILURE);
 	}
+
+	termattr = *old;
 	termattr.c_lflag &= ~(ECHO | ICANON);
 	termattr.c_cc[VMIN] = 1;
 	termattr.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSADRAIN, &termattr) == -1)
+	if (tcsetattr(l->fd, TCSADRAIN, &termattr) == -1)
 	{
-		ft_putendl_fd("probelem with setattr", 2);
+		ft_putendl_fd("failed to setattr", 2);
 		exit(EXIT_FAILURE);
 	}
 }
 
-void	reset_default_mode(void)
+void	reset_default_mode(t_entlist *l, struct termios *old)
 {
-	struct termios termattr;
-
-	if (tcgetattr(0, &termattr) == -1)
+	if (tcsetattr(l->fd, TCSADRAIN, old) == -1)
 	{
-		ft_putendl_fd("problem with tgetattr", 2);
+		ft_putendl_fd("failed to setattr", 2);
 		exit(EXIT_FAILURE);
 	}
-	termattr.c_lflag |= ~ECHO;
-	termattr.c_lflag |= ~ICANON;
-	termattr.c_cc[VMIN] = 1;
-	termattr.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSADRAIN, &termattr) == -1)
-	{
-		ft_putendl_fd("problem with setattr", 2);
-		exit(EXIT_FAILURE);
-	}
+	close(l->fd);
 }

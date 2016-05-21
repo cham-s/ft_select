@@ -1,15 +1,15 @@
 #include "ft_select.h"
 
-void	init_term_data()
+void	init_term_data(t_entlist *l)
 {
 	char	*termtype;
 	int		success;
 	char	*term_buffer;
 
 	term_buffer = NULL;
-	if (!isatty(0))
+	if (!isatty(l->fd))
 	{
-		ft_putendl_fd("Not a terminal", 2);
+		ft_putendl_fd("Not a terminal device", 2);
 		exit(EXIT_FAILURE);
 	}
 	termtype = getenv("TERM");
@@ -26,18 +26,4 @@ void	init_term_data()
 		ft_putendl_fd(" is not a valid.", 2);
 		exit(EXIT_FAILURE);
 	}
-}
-
-void	interrogate_term(void)
-{
-	int		height;
-	int		width;
-
-	height = tgetnum("li");
-	width = tgetnum("co");
-
-	ft_putnbr(height);
-	ft_putendl("");
-	ft_putnbr(width);
-	ft_putendl("");
 }

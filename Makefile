@@ -3,12 +3,13 @@ CC 			= clang
 OBJDIR		= obj
 LIB			= libft/libft.a 
 FLAGS		= -Wall -Werror -Wextra
-INCLUDES	= -I includes -I libft/includes
+INCLUDES	= -I include -I libft/includes
 INC			=
 OBJS 		=	$(OBJDIR)/main.o\
 			   	$(OBJDIR)/init_term.o\
 			   	$(OBJDIR)/parser.o\
 			   	$(OBJDIR)/attr.o\
+			   	$(OBJDIR)/draw.o\
 			   	$(OBJDIR)/init_entry.o\
 			   	$(OBJDIR)/launcher.o \
 

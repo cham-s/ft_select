@@ -17,7 +17,7 @@ t_entry	*newentry(char *str)
 
 void	init_entlist(t_entlist *l, char **av, int ac)
 {
-	t_entry *tmp;
+	t_entry	*tmp;
 
 	l->head = NULL;
 	l->tail = NULL;

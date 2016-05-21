@@ -29,12 +29,12 @@
 # define K_DOWN		4348699
 # define K_LEFT		4479771
 # define K_RIGHT	4414235
-# define K_ESC		8323099	
-# define K_ENT		8323082	
-# define K_TAB		4325385
-# define K_DEL		2117294875	
-# define K_BKSPC	2117294875	
-# define K_SPACE	2117271584	
+# define K_ESC		27
+# define K_ENT		10
+# define K_TAB		9
+# define K_DEL		2117294875
+# define K_BKSPC	127
+# define K_SPACE	32
 
 typedef struct	s_entry
 {
@@ -56,10 +56,9 @@ typedef	struct	s_entlist
 	int		wl;
 }				t_entlist;
 
-void	init_term_data();
-void	interrogate_term(void);
-void	init_raw_mode(void);
-void	reset_default_mode(void);
+void	init_raw_mode(t_entlist *l, struct termios *old);
+void	reset_default_mode(t_entlist *l, struct termios *old);
+void	init_term_data(t_entlist *l);
 void	entry_destroy(t_entry *list);
 void	getargs(int ac, char **av, t_entlist *l);
 void	addentry(t_entlist *list, t_entry *new);
@@ -67,5 +66,6 @@ void	init_entlist(t_entlist *l, char **av, int ac);
 t_entry	*newentry(char *str);
 int		launcher(t_entlist *l);
 void	draw(t_entlist *l);
+void	set_draw(t_entlist *l);
 
 #endif

@@ -1,6 +1,5 @@
 #include "ft_select.h"
 
-
 int	ft_putc(int c)
 {
 	ft_putchar(c);
@@ -18,17 +17,20 @@ void	check_args(int ac)
 
 int	main(int ac, char **av)
 {
-	t_entlist l;
-
+	t_entlist			l;
+	struct termios		default_term;	
 	//use malloc instead
-	init_term_data();
-	init_raw_mode();
-	// open tty
-	ft_putstr(tgetstr("ti", NULL));
+	check_args(ac);
+	if ((l.fd = open(ttyname(0), O_WRONLY)) < 0)
+	{
+		ft_putendl_fd("failed to open terminal device", 2);
+		exit(EXIT_FAILURE);
+	}
+	init_term_data(&l);
+	init_raw_mode(&l, &default_term);
 	init_entlist(&l, av, ac);
 	launcher(&l);
 	entry_destroy(l.list);
-	reset_default_mode();
-	ft_putstr(tgetstr("te", NULL));
+	reset_default_mode(&l, &default_term);
 	return (EXIT_SUCCESS);
 }
