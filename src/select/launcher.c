@@ -1,5 +1,23 @@
 #include "ft_select.h"
 
+void	go_down(t_entlist *l)	
+{
+	l->list->us = 0;
+	l->list = l->list->next;
+	if (l->list == NULL)
+		l->list = l->head;
+	l->list->us = 1;
+}
+
+void	go_up(t_entlist *l)	
+{
+	l->list->us = 0;
+	l->list = l->list->prev;
+	if (l->list == NULL)
+		l->list = l->tail;
+	l->list->us = 1;
+}
+
 int	launcher(t_entlist *l)
 {
 	char			buf[MAX_KEY_LENGTH];
@@ -18,22 +36,18 @@ int	launcher(t_entlist *l)
 		else
 		{
 			if (key == K_ESC)
+			{
+				ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 				exit(EXIT_SUCCESS);
-			else if (key == K_DOWN || key == K_RIGHT)
-			{
-				l->list->us = 0;
-				l->list = l->list->next;
-				if (l->list == NULL)
-					l->list = l->head;
-				l->list->us = 1;
 			}
+			else if (key == K_DOWN || key == K_RIGHT)
+				go_down(l);
 			else if (key == K_UP || key == K_LEFT)
+				go_up(l);
+			else if (key == K_SPACE)
 			{
-				l->list->us = 0;
-				l->list = l->list->prev;
-				if (l->list == NULL)
-					l->list = l->tail;
-				l->list->us = 1;
+				l->list->hl = l->list->hl == 0? 1: 0;
+				go_down(l);
 			}
 		}
 	}

@@ -29,8 +29,10 @@ int	main(int ac, char **av)
 	init_term_data(&l);
 	init_raw_mode(&l, &default_term);
 	init_entlist(&l, av, ac);
+	ft_putstr_fd(tgetstr("vi", NULL), l.fd);
 	launcher(&l);
 	entry_destroy(l.list);
+	ft_putstr_fd(tgetstr("ve", NULL), l.fd);
 	reset_default_mode(&l, &default_term);
 	return (EXIT_SUCCESS);
 }

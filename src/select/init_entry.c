@@ -18,6 +18,7 @@ t_entry	*newentry(char *str)
 void	init_entlist(t_entlist *l, char **av, int ac)
 {
 	t_entry	*tmp;
+	t_entry *slow;
 
 	l->head = NULL;
 	l->tail = NULL;
@@ -27,8 +28,12 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	l->current = l->head;
 	tmp = l->list;
 	while (tmp->next)
+	{
+		slow = tmp;
 		tmp = tmp->next;
+	}
 	l->tail = tmp;
+	l->tail->prev = slow;;
 }
 
 void	addentry(t_entlist *l, t_entry *new)
