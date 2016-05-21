@@ -23,6 +23,7 @@ int	main(int ac, char **av)
 	//use malloc instead
 	init_term_data();
 	init_raw_mode();
+	// open tty
 	ft_putstr(tgetstr("ti", NULL));
 	init_entlist(&l, av, ac);
 	launcher(&l);

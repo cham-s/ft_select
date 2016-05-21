@@ -1,22 +1,20 @@
-NAME = ft_select 
-CC = clang
-OBJDIR = obj
-LIB = libft/libft.a 
-FLAGS = -g -Wall -Werror -Wextra
-INCLUDES = -I includes -I libft/includes
-OBJS = $(OBJDIR)/main.o\
-	   $(OBJDIR)/init_term.o\
-	   $(OBJDIR)/parser.o\
-	   $(OBJDIR)/attr.o\
-	   $(OBJDIR)/nor_key.o\
-	   $(OBJDIR)/dir_key.o\
-	   $(OBJDIR)/init_key.o\
-	   $(OBJDIR)/init_entry.o\
-	   $(OBJDIR)/launcher.o \
+NAME		= ft_select 
+CC 			= clang
+OBJDIR		= obj
+LIB			= libft/libft.a 
+FLAGS		= -Wall -Werror -Wextra
+INCLUDES	= -I includes -I libft/includes
+INC			=
+OBJS 		=	$(OBJDIR)/main.o\
+			   	$(OBJDIR)/init_term.o\
+			   	$(OBJDIR)/parser.o\
+			   	$(OBJDIR)/attr.o\
+			   	$(OBJDIR)/init_entry.o\
+			   	$(OBJDIR)/launcher.o \
 
 .PHONY: all clean fclean re
 
-VPATH = sources/term:sources/select:sources/key
+VPATH = src/select:src/term
 
 all: $(NAME)
 
