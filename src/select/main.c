@@ -27,13 +27,11 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	init_term_data(&l);
-	init_raw_mode(&l, &default_term);
+	init_raw_mode(&default_term);
 	init_entlist(&l, av, ac);
 	launcher(&l);
-	ft_putstr(tgetstr("ve", NULL));
-	ft_putstr(tgetstr("te", NULL));
-	reset_default_mode(&l, &default_term);
-	printf_selected(&l);
+	reset_default_mode(&default_term);
+	print_selected(&l);
 	entry_destroy(l.list);
 	return (EXIT_SUCCESS);
 }

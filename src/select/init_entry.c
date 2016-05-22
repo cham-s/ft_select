@@ -72,15 +72,16 @@ void	getargs(int ac, char **av, t_entlist *l)
 	}
 }
 
-void	entry_destroy(t_entry *list)
+void	entry_destroy(t_entlist *l)
 {
 	t_entry *tmp;
 
-	while (list)
+	while (l->list)
 	{
-		tmp = list;
-		list = list->next;
+		tmp = l->list;
+		l->list = l->list->next;
 		free(tmp->line);
 		free(tmp);
 	}
+	close(l->fd);
 }

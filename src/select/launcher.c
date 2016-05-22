@@ -32,13 +32,18 @@ int	launcher(t_entlist *l)
 		read(0, buf, MAX_KEY_LENGTH);
 		key = *(unsigned int *)buf;
 		if (key == K_ENT)
+		{
+			//ft_putstr_fd(tgetstr("cl", NULL), l->fd);
+			ft_putstr_fd(tgetstr("ve", NULL), l->fd);
+			ft_putstr_fd(tgetstr("te", NULL), l->fd);
 			is_running = 0;
+		}
 		else
 		{
 			if (key == K_ESC)
 			{
-				ft_putstr(tgetstr("vi", NULL));
-				ft_putstr(tgetstr("ti", NULL));
+				ft_putstr_fd(tgetstr("ve", NULL), l->fd);
+				ft_putstr_fd(tgetstr("te", NULL), l->fd);
 				exit(EXIT_SUCCESS);
 			}
 			else if (key == K_DOWN || key == K_RIGHT)

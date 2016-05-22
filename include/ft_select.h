@@ -57,10 +57,10 @@ typedef	struct	s_entlist
 	int		ac;
 }				t_entlist;
 
-void	init_raw_mode(t_entlist *l, struct termios *old);
-void	reset_default_mode(t_entlist *l, struct termios *old);
+void	init_raw_mode(struct termios *old);
+void	reset_default_mode(struct termios *old);
 void	init_term_data(t_entlist *l);
-void	entry_destroy(t_entry *list);
+void	entry_destroy(t_entlist *l);
 void	getargs(int ac, char **av, t_entlist *l);
 void	addentry(t_entlist *list, t_entry *new);
 void	init_entlist(t_entlist *l, char **av, int ac);
@@ -68,6 +68,6 @@ t_entry	*newentry(char *str);
 int		launcher(t_entlist *l);
 void	draw(t_entlist *l);
 void	set_draw(t_entlist *l);
-void	printf_selected(t_entlist *l);
+void	print_selected(t_entlist *l);
 
 #endif
