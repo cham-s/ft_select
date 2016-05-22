@@ -54,6 +54,7 @@ typedef	struct	s_entlist
 	int		fd;
 	int		wc;
 	int		wl;
+	int		ac;
 }				t_entlist;
 
 void	init_raw_mode(t_entlist *l, struct termios *old);
@@ -67,5 +68,6 @@ t_entry	*newentry(char *str);
 int		launcher(t_entlist *l);
 void	draw(t_entlist *l);
 void	set_draw(t_entlist *l);
+void	printf_selected(t_entlist *l);
 
 #endif

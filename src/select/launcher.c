@@ -37,7 +37,8 @@ int	launcher(t_entlist *l)
 		{
 			if (key == K_ESC)
 			{
-				ft_putstr_fd(tgetstr("ve", NULL), l->fd);
+				ft_putstr(tgetstr("vi", NULL));
+				ft_putstr(tgetstr("ti", NULL));
 				exit(EXIT_SUCCESS);
 			}
 			else if (key == K_DOWN || key == K_RIGHT)
