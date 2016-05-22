@@ -41,11 +41,7 @@ int	launcher(t_entlist *l)
 		else
 		{
 			if (key == K_ESC)
-			{
-				ft_putstr_fd(tgetstr("ve", NULL), l->fd);
-				ft_putstr_fd(tgetstr("te", NULL), l->fd);
-				exit(EXIT_SUCCESS);
-			}
+				quit(l);
 			else if (key == K_DOWN || key == K_RIGHT)
 				go_down(l);
 			else if (key == K_UP || key == K_LEFT)
@@ -54,6 +50,12 @@ int	launcher(t_entlist *l)
 			{
 				l->list->hl = l->list->hl == 0? 1: 0;
 				go_down(l);
+			}
+			else if (key == K_DEL || key == K_BKSPC)
+			{
+				if (delete_entry(l) < 0)
+					quit(l);
+				l->list->us = 1;
 			}
 		}
 	}

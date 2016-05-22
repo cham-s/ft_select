@@ -69,5 +69,7 @@ int		launcher(t_entlist *l);
 void	draw(t_entlist *l);
 void	set_draw(t_entlist *l);
 void	print_selected(t_entlist *l);
+int		delete_entry(t_entlist *l);
+void	quit(t_entlist *l);
 
 #endif

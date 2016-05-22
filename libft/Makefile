@@ -28,7 +28,8 @@ OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o \
 	ft_strlcat.o ft_memcmp.o ft_memchr.o ft_strchr.o ft_strrchr.o \
 	ft_memalloc.o ft_memdel.o  ft_strnew.o ft_strdel.o ft_striter.o \
 	ft_strmap.o ft_strmapi.o ft_strequ.o ft_strnequ.o \
-	ft_strsub.o ft_strjoin.o ft_strjoinfree.o ft_strnjoin.o ft_strsplit.o ft_itoa.o ft_strtrim.o \
+	ft_strsub.o ft_strjoin.o ft_strjoinfree.o ft_strnjoin.o ft_strsplit.o \
+	ft_itoa.o ft_strtrim.o \
 	ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o \
 	ft_lstmap.o ft_lstnewref.o ft_strsplitspc.o ft_strndup.o ft_memdup.o \
 	ft_strlenchr.o ft_lstappend.o ft_lstprint.o  ft_lstlen.o ft_lstinsertafter.o \
@@ -36,7 +37,7 @@ OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o \
 	ft_isspace.o ft_lstdelmem.o get_next_line.o ft_strjoinfree.o ft_tablen.o tab_len.o \
 	tab_free.o tabdup.o
 
-CFLAGS = -g -c -Wall -Wextra -Werror -I includes
+CFLAGS = -Wall -Wextra -Werror -I includes
 .PHONY: all clean fclean re
 
 RM = rm -rf

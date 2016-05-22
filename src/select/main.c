@@ -32,6 +32,6 @@ int	main(int ac, char **av)
 	launcher(&l);
 	reset_default_mode(&default_term);
 	print_selected(&l);
-	entry_destroy(l.list);
+	entry_destroy(&l);
 	return (EXIT_SUCCESS);
 }
