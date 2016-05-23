@@ -11,11 +11,14 @@ void	go_down(t_entlist *l)
 
 void	go_up(t_entlist *l)	
 {
-	l->list->us = 0;
-	l->list = l->list->prev;
-	if (l->list == NULL)
-		l->list = l->tail;
-	l->list->us = 1;
+	if (l->head != l->list)
+	{
+		l->list->us = 0;
+		l->list = l->list->prev;
+		if (l->list == NULL)
+			l->list = l->tail;
+		l->list->us = 1;
+	}
 }
 
 int	launcher(t_entlist *l)
@@ -33,7 +36,7 @@ int	launcher(t_entlist *l)
 		key = *(unsigned int *)buf;
 		if (key == K_ENT)
 		{
-			//ft_putstr_fd(tgetstr("cl", NULL), l->fd);
+			ft_putstr_fd(tgetstr("cl", NULL), l->fd);
 			ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 			ft_putstr_fd(tgetstr("te", NULL), l->fd);
 			is_running = 0;
