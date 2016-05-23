@@ -54,7 +54,11 @@ int	launcher(t_entlist *l)
 			else if (key == K_DEL || key == K_BKSPC)
 			{
 				if (delete_entry(l) < 0)
-					quit(l);
+				{
+					ft_putstr_fd(tgetstr("ve", NULL), l->fd);
+					ft_putstr_fd(tgetstr("te", NULL), l->fd);
+					exit(0);
+				}
 				l->list->us = 1;
 			}
 		}

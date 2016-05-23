@@ -76,10 +76,10 @@ void	entry_destroy(t_entlist *l)
 {
 	t_entry *tmp;
 
-	while (l->list)
+	while (l->head)
 	{
-		tmp = l->list;
-		l->list = l->list->next;
+		tmp = l->head;
+		l->head = l->head->next;
 		free(tmp->line);
 		free(tmp);
 	}
@@ -113,11 +113,12 @@ int		delete_entry(t_entlist *l)
 	{
 		if (l->head->next == NULL)
 		{
-			destroy_entry(l->list);
+			entry_destroy(l);
 			return (-1);
 		}
 		tmp = l->head;
 		l->head = l->head->next;
+		l->list = l->head;
 		destroy_entry(tmp);
 	}
 	else if (l->list == l->tail)
@@ -125,16 +126,16 @@ int		delete_entry(t_entlist *l)
 		tmp = l->tail;
 		l->tail = l->tail->prev;
 		l->tail->next = NULL;
+		l->list = l->tail;
 		destroy_entry(tmp);
 	}
 	else
 	{
 		tmp = l->list;
-		tmp = l->list->prev;
-		tmp->next = l->list->next;
-		l->list->next->prev = tmp;
-		destroy_entry(l->list);
-		l->list = tmp->next;
+		l->list = l->list->next;
+		l->list->prev = tmp->prev;
+		tmp->prev->next = l->list;
+		destroy_entry(tmp);
 	}
 	return (0);
 }
