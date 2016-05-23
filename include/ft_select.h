@@ -47,14 +47,15 @@ typedef struct	s_entry
 
 typedef	struct	s_entlist
 {
-	t_entry	*head;
-	t_entry *tail;
-	t_entry	*list;
-	t_entry	*current;
-	int		fd;
-	int		wc;
-	int		wl;
-	int		ac;
+	t_entry			*head;
+	t_entry			*tail;
+	t_entry			*list;
+	t_entry			*current;
+	int				fd;
+	int				wc;
+	int				wl;
+	int				ac;
+	struct	termios	old_term;
 }				t_entlist;
 
 void	init_raw_mode(struct termios *old);

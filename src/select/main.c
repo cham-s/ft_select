@@ -17,8 +17,7 @@ void	check_args(int ac)
 
 int	main(int ac, char **av)
 {
-	t_entlist			l;
-	struct termios		default_term;	
+	t_entlist	l;
 	//use malloc instead
 	check_args(ac);
 	if ((l.fd = open("/dev/tty", O_WRONLY)) < 0)
@@ -27,11 +26,11 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	init_term_data(&l);
-	init_raw_mode(&default_term);
+	init_raw_mode(&l.old_term);
 	init_entlist(&l, av, ac);
 	launcher(&l);
-	reset_default_mode(&default_term);
+	reset_default_mode(&l.old_term);
 	print_selected(&l);
-	//entry_destroy(&l);
+	entry_destroy(&l);
 	return (EXIT_SUCCESS);
 }
