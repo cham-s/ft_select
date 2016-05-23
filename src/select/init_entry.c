@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_entry.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/23 16:33:47 by cattouma          #+#    #+#             */
+/*   Updated: 2016/05/23 17:41:15 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 t_entry	*newentry(char *str)
@@ -21,19 +33,17 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	t_entry *slow;
 
 	l->head = NULL;
-	l->tail = NULL;
 	l->list = NULL;
 	getargs(ac, av, l);
 	l->head = l->list;
-	l->current = l->head;
 	tmp = l->list;
 	while (tmp->next)
 	{
 		slow = tmp;
 		tmp = tmp->next;
 	}
-	l->tail = tmp;
-	l->tail->prev = slow;;
+	tmp->next = l->head;
+	l->head->prev = tmp;
 }
 
 void	addentry(t_entlist *l, t_entry *new)
@@ -44,10 +54,7 @@ void	addentry(t_entlist *l, t_entry *new)
 	tmp = l->list;
 	slow = l->list;
 	if (!tmp)
-	{
 		l->list = new;
-		l->tail = new;
-	}
 	else
 	{
 		while (tmp->next)
@@ -102,42 +109,42 @@ void	quit(t_entlist *l)
 	ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 	ft_putstr_fd(tgetstr("te", NULL), l->fd);
 	entry_destroy(l);
-	reset_default_mode(&l.old_term);
+	reset_default_mode(&l->old_term);
 	exit(EXIT_SUCCESS);
 }
 
 
-int		delete_entry(t_entlist *l)
-{
-	t_entry	*tmp;
-
-	if (l->head == l->list)
-	{
-		if (l->head->next == NULL)
-		{
-			entry_destroy(l);
-			return (-1);
-		}
-		tmp = l->head;
-		l->head = l->head->next;
-		l->list = l->head;
-		destroy_entry(tmp);
-	}
-	else if (l->list == l->tail)
-	{
-		tmp = l->tail;
-		l->tail = l->tail->prev;
-		l->tail->next = NULL;
-		l->list = l->tail;
-		destroy_entry(tmp);
-	}
-	else
-	{
-		tmp = l->list;
-		l->list = l->list->next;
-		l->list->prev = tmp->prev;
-		tmp->prev->next = l->list;
-		destroy_entry(tmp);
-	}
-	return (0);
-}
+/* int		delete_entry(t_entlist *l) */
+/* { */
+/* 	t_entry	*tmp; */
+/*  */
+/* 	if (l->head == l->list) */
+/* 	{ */
+/* 		if (l->head->next == NULL) */
+/* 		{ */
+/* 			entry_destroy(l); */
+/* 			return (-1); */
+/* 		} */
+/* 		tmp = l->head; */
+/* 		l->head = l->head->next; */
+/* 		l->list = l->head; */
+/* 		destroy_entry(tmp); */
+/* 	} */
+/* 	else if (l->list == l->tail) */
+/* 	{ */
+/* 		tmp = l->tail; */
+/* 		l->tail = l->tail->prev; */
+/* 		l->tail->next = NULL; */
+/* 		l->list = l->tail; */
+/* 		destroy_entry(tmp); */
+/* 	} */
+/* 	else */
+/* 	{ */
+/* 		tmp = l->list; */
+/* 		l->list = l->list->next; */
+/* 		l->list->prev = tmp->prev; */
+/* 		tmp->prev->next = l->list; */
+/* 		destroy_entry(tmp); */
+/* 	} */
+/* 	return (0); */
+/* } */

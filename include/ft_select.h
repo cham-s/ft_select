@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_select.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
+/*   Updated: 2016/05/23 17:42:22 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_SELECT_H
 # define FT_SELECT_H
 # include <curses.h>
@@ -48,9 +60,7 @@ typedef struct	s_entry
 typedef	struct	s_entlist
 {
 	t_entry			*head;
-	t_entry			*tail;
 	t_entry			*list;
-	t_entry			*current;
 	int				fd;
 	int				wc;
 	int				wl;
@@ -70,7 +80,7 @@ int		launcher(t_entlist *l);
 void	draw(t_entlist *l);
 void	set_draw(t_entlist *l);
 void	print_selected(t_entlist *l);
-int		delete_entry(t_entlist *l);
+// int		delete_entry(t_entlist *l);
 void	quit(t_entlist *l);
 
 #endif

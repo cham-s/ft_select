@@ -4,21 +4,14 @@ void	go_down(t_entlist *l)
 {
 	l->list->us = 0;
 	l->list = l->list->next;
-	if (l->list == NULL)
-		l->list = l->head;
 	l->list->us = 1;
 }
 
 void	go_up(t_entlist *l)	
 {
-	if (l->head != l->list)
-	{
-		l->list->us = 0;
-		l->list = l->list->prev;
-		if (l->list == NULL)
-			l->list = l->tail;
-		l->list->us = 1;
-	}
+	l->list->us = 0;
+	l->list = l->list->prev;
+	l->list->us = 1;
 }
 
 int	launcher(t_entlist *l)
@@ -36,7 +29,6 @@ int	launcher(t_entlist *l)
 		key = *(unsigned int *)buf;
 		if (key == K_ENT)
 		{
-			ft_putstr_fd(tgetstr("cl", NULL), l->fd);
 			ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 			ft_putstr_fd(tgetstr("te", NULL), l->fd);
 			is_running = 0;
@@ -56,12 +48,13 @@ int	launcher(t_entlist *l)
 			}
 			else if (key == K_DEL || key == K_BKSPC)
 			{
-				if (delete_entry(l) < 0)
-				{
-					ft_putstr_fd(tgetstr("ve", NULL), l->fd);
-					ft_putstr_fd(tgetstr("te", NULL), l->fd);
-					exit(0);
-				}
+				/* if (delete_entry(l) < 0) */
+				/* { */
+				/* 	ft_putstr_fd(tgetstr("ve", NULL), l->fd); */
+				/* 	ft_putstr_fd(tgetstr("te", NULL), l->fd); */
+				/* 	reset_default_mode(&l->old_term); */
+				/* 	exit(0); */
+				/* } */
 				l->list->us = 1;
 			}
 		}
