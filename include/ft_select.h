@@ -65,6 +65,7 @@ typedef	struct	s_entlist
 	int				wc;
 	int				wl;
 	int				ac;
+	int				max_len;
 	struct	termios	old_term;
 }				t_entlist;
 

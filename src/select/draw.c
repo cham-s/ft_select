@@ -22,19 +22,29 @@ void	draw(t_entlist *l)
 {
 	t_entry *tmp;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
+
+	int col = 2;
+	int lines = l->ac / 2;
 	tmp = l->head;
 	ft_putstr_fd(tgetstr("cl", NULL), l->fd);
-	while (i < l->ac)
+	while (i < col)
 	{
-		if (tmp->us)
-			ft_putstr_fd(tgetstr("us", NULL), l->fd);
-		if (tmp->hl)
-			ft_putstr_fd(tgetstr("mr", NULL), l->fd);
-		ft_putendl_fd(tmp->line, l->fd);
-		ft_putstr_fd(tgetstr("me", NULL), l->fd);
-		tmp = tmp->next;
+		j = 0;
+		while (j < lines)
+		{
+			if (tmp->us)
+				ft_putstr_fd(tgetstr("us", NULL), l->fd);
+			if (tmp->hl)
+				ft_putstr_fd(tgetstr("mr", NULL), l->fd);
+			tgoto(ft_putstr(tmp->line, l->fd), i, j, );
+			ft_putstr_fd(tgetstr("me", NULL), l->fd);
+			tmp = tmp->next;
+			j++;
+		}
 		i++;
 	}
 }
