@@ -14,6 +14,18 @@ void	go_up(t_entlist *l)
 	l->list->us = 1;
 }
 
+void	delete_key(t_entlist *l)
+{
+	if (delete_entry(l) < 0)
+	{
+		ft_putstr_fd(tgetstr("ve", NULL), l->fd);
+		ft_putstr_fd(tgetstr("te", NULL), l->fd);
+		reset_default_mode(&l->old_term);
+		exit(0);
+	}
+	l->list->us = 1;
+}
+
 int	launcher(t_entlist *l)
 {
 	char			buf[MAX_KEY_LENGTH];
@@ -47,16 +59,7 @@ int	launcher(t_entlist *l)
 				go_down(l);
 			}
 			else if (key == K_DEL || key == K_BKSPC)
-			{
-				if (delete_entry(l) < 0)
-				{
-					ft_putstr_fd(tgetstr("ve", NULL), l->fd);
-					ft_putstr_fd(tgetstr("te", NULL), l->fd);
-					reset_default_mode(&l->old_term);
-					exit(0);
-				}
-				l->list->us = 1;
-			}
+				delete_key(l);
 		}
 	}
 	return (0);
