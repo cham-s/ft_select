@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/24 16:39:45 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/24 17:25:32 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		launcher(t_entlist *l);
 void	draw(t_entlist *l);
 void	set_draw(t_entlist *l);
 void	print_selected(t_entlist *l);
-// int		delete_entry(t_entlist *l);
+int		delete_entry(t_entlist *l);
 void	quit(t_entlist *l);
 
 #endif

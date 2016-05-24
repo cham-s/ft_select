@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:47 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/24 16:56:56 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/24 19:35:38 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,24 @@ void	getargs(int ac, char **av, t_entlist *l)
 void	entry_destroy(t_entlist *l)
 {
 	t_entry *tmp;
+	int		i;
 
-	while (l->head)
+	i = 0;
+	if (l->head)
 	{
-		tmp = l->head;
-		l->head = l->head->next;
-		free(tmp->line);
-		free(tmp);
+		while (i < l->ac)
+		{
+			tmp = l->head;
+			l->head = l->head->next;
+			free(tmp->line);
+			free(tmp);
+			i++;
+		}
 	}
 	close(l->fd);
 }
 
-void	destroy_entry(t_entry *e)
+void	free_entry(t_entry *e)
 {
 	free(e->line);
 	e->line = NULL;
@@ -110,38 +116,19 @@ void	quit(t_entlist *l)
 	exit(EXIT_SUCCESS);
 }
 
+int		delete_entry(t_entlist *l)
+{
+	t_entry	*tmp;
+	int		y;
 
-/* int		delete_entry(t_entlist *l) */
-/* { */
-/* 	t_entry	*tmp; */
-/*  */
-/* 	if (l->head == l->list) */
-/* 	{ */
-/* 		if (l->head->next == NULL) */
-/* 		{ */
-/* 			entry_destroy(l); */
-/* 			return (-1); */
-/* 		} */
-/* 		tmp = l->head; */
-/* 		l->head = l->head->next; */
-/* 		l->list = l->head; */
-/* 		destroy_entry(tmp); */
-/* 	} */
-/* 	else if (l->list == l->tail) */
-/* 	{ */
-/* 		tmp = l->tail; */
-/* 		l->tail = l->tail->prev; */
-/* 		l->tail->next = NULL; */
-/* 		l->list = l->tail; */
-/* 		destroy_entry(tmp); */
-/* 	} */
-/* 	else */
-/* 	{ */
-/* 		tmp = l->list; */
-/* 		l->list = l->list->next; */
-/* 		l->list->prev = tmp->prev; */
-/* 		tmp->prev->next = l->list; */
-/* 		destroy_entry(tmp); */
-/* 	} */
-/* 	return (0); */
-/* } */
+	y = (l->list == l->head? 1 : 0);
+	tmp = l->list;
+	l->list = l->list->next;
+	tmp->prev->next = l->list;
+	l->list->prev = tmp->prev;
+	free_entry(tmp);
+	if (y)
+		l->head = l->list;
+	l->ac--;
+	return (l->ac == 0? -1 : 0);
+}
