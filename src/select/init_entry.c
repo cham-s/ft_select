@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:47 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/24 19:35:38 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/24 19:46:35 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,6 @@ int		delete_entry(t_entlist *l)
 	if (y)
 		l->head = l->list;
 	l->ac--;
+	ft_putnbr_fd(l->ac, l->fd);
 	return (l->ac == 0? -1 : 0);
 }

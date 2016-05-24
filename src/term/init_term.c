@@ -15,7 +15,7 @@ void	init_term_data(t_entlist *l)
 	termtype = getenv("TERM");
 	if (termtype == 0)
 	{
-		ft_putendl_fd("Specify a terminal type in the env.", 2);
+		ft_putendl_fd("Error: No TERM variable.", 2);
 		exit(EXIT_FAILURE);
 	}
 	success = tgetent(term_buffer, termtype);
