@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:47 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/23 17:41:15 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/24 16:56:56 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,39 +30,36 @@ t_entry	*newentry(char *str)
 void	init_entlist(t_entlist *l, char **av, int ac)
 {
 	t_entry	*tmp;
-	t_entry *slow;
+	t_entry	*slow;
 
 	l->head = NULL;
 	l->list = NULL;
+	l->ac = ac - 1;
 	getargs(ac, av, l);
 	l->head = l->list;
 	tmp = l->list;
+	slow = l->list;
 	while (tmp->next)
 	{
-		slow = tmp;
 		tmp = tmp->next;
+		tmp->prev = slow; 
+		slow = slow->next;
 	}
 	tmp->next = l->head;
-	l->head->prev = tmp;
+	l->list->prev = tmp;
 }
 
 void	addentry(t_entlist *l, t_entry *new)
 {
 	t_entry *tmp;
-	t_entry *slow;
 
 	tmp = l->list;
-	slow = l->list;
 	if (!tmp)
 		l->list = new;
 	else
 	{
 		while (tmp->next)
-		{
 			tmp = tmp->next;
-			tmp->prev = slow;
-			slow = slow->next;
-		}
 		tmp->next = new;
 	}
 }

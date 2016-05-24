@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:43 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/23 17:42:54 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/24 16:42:41 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ void	set_draw(t_entlist *l)
 void	draw(t_entlist *l)
 {
 	t_entry *tmp;
+	int		i;
 
+	i = 0;
 	tmp = l->head;
 	ft_putstr_fd(tgetstr("cl", NULL), l->fd);
-	if (l->head != NULL)
+	while (i < l->ac)
 	{
-		while (tmp->next != l->head)
-		{
-			if (tmp->us)
-				ft_putstr_fd(tgetstr("us", NULL), l->fd);
-			if (tmp->hl)
-				ft_putstr_fd(tgetstr("mr", NULL), l->fd);
-			ft_putendl_fd(tmp->line, l->fd);
-			ft_putstr_fd(tgetstr("me", NULL), l->fd);
-			tmp = tmp->next;
-		}
+		if (tmp->us)
+			ft_putstr_fd(tgetstr("us", NULL), l->fd);
+		if (tmp->hl)
+			ft_putstr_fd(tgetstr("mr", NULL), l->fd);
+		ft_putendl_fd(tmp->line, l->fd);
+		ft_putstr_fd(tgetstr("me", NULL), l->fd);
+		tmp = tmp->next;
+		i++;
 	}
 }
 
