@@ -29,9 +29,8 @@ void	draw(t_entlist *l)
 	j = 0;
 	times = 0;
 	tmp = l->head;
-	l->row = g_w.ws_row;
-	l->col = g_w.ws_col;
 	ft_putstr_fd(tgetstr("cl", NULL), l->fd);
+	//printf
 	while (times < l->ac)
 	{
 		if (i == l->row - 1)

@@ -73,8 +73,8 @@ typedef	struct	s_entlist
 	struct	termios	old_term;
 }				t_entlist;
 
-extern	struct winsize g_w;
-
+t_entlist	*ret_entlist(void);
+void		sig_handle(void);
 void	init_raw_mode(struct termios *old);
 void	reset_default_mode(struct termios *old);
 void	init_term_data(t_entlist *l);

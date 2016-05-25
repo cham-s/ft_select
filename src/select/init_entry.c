@@ -12,6 +12,12 @@
 
 #include "ft_select.h"
 
+t_entlist	*ret_entlist(void)
+{
+	static t_entlist l;
+	return (&l);
+}
+
 t_entry	*newentry(char *str)
 {
 	t_entry *new;

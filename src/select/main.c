@@ -12,9 +12,6 @@
 
 #include "ft_select.h"
 
-//
-struct winsize g_w;
-
 int	ft_putc(int c)
 {
 	ft_putchar(c);
@@ -32,21 +29,22 @@ void	check_args(int ac)
 
 int	main(int ac, char **av)
 {
-	t_entlist	l;
+	t_entlist	*l;
 	//use malloc instead
+	l = ret_entlist();
 	check_args(ac);
-	if ((l.fd = open("/dev/tty", O_WRONLY)) < 0)
+	if ((l->fd = open("/dev/tty", O_WRONLY)) < 0)
 	{
 		ft_putendl_fd("failed to open terminal device", 2);
 		exit(EXIT_FAILURE);
 	}
-	signal(SIGWINCH, win_resize_h);
-	init_term_data(&l);
-	init_raw_mode(&l.old_term);
-	init_entlist(&l, av, ac);
-	launcher(&l);
-	reset_default_mode(&l.old_term);
-	print_selected(&l);
-	entry_destroy(&l);
+	init_term_data(l);
+	init_raw_mode(&l->old_term);
+	init_entlist(l, av, ac);
+	sig_handle();
+	launcher(l);
+	reset_default_mode(&l->old_term);
+	print_selected(l);
+	entry_destroy(l);
 	return (EXIT_SUCCESS);
 }

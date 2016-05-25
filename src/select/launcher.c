@@ -45,8 +45,6 @@ int	launcher(t_entlist *l)
 			ft_putstr_fd(tgetstr("te", NULL), l->fd);
 			is_running = 0;
 		}
-		else if (g_w.ws_row != l->row || g_w.ws_col != l->col)
-			continue ;
 		else
 		{
 			if (key == K_ESC)
