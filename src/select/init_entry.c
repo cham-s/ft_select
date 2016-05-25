@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:47 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/24 19:46:35 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/25 16:07:59 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,13 @@ t_entry	*newentry(char *str)
 
 void	init_entlist(t_entlist *l, char **av, int ac)
 {
-	t_entry	*tmp;
-	t_entry	*slow;
+	t_entry		   	*tmp;
+	t_entry		   	*slow;
+	struct winsize	w;
 
+	ioctl(l->fd, TIOCGWINSZ, &w);
+	l->row = w.ws_row;
+	l->col = w.ws_col;
 	l->head = NULL;
 	l->list = NULL;
 	l->ac = ac - 1;

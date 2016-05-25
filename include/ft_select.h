@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/25 15:49:42 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/25 16:18:30 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef	struct	s_entlist
 	t_entry			*head;
 	t_entry			*list;
 	int				fd;
-	int				wc;
-	int				wl;
+	int				row;
+	int				col;
 	int				ac;
 	int				max_len;
 	struct	termios	old_term;

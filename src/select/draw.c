@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:43 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/25 15:50:55 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/25 16:54:11 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,48 @@ void	draw(t_entlist *l)
 	t_entry *tmp;
 	int		i;
 	int		j;
+	int		times;
 
-	i = 0;
+	i = START;
 	j = 0;
 
-	int col = (l->max_len + SPACE) * 5;
-	int li = l->ac / 2;
+	times = 0;
 	tmp = l->head;
 	ft_putstr_fd(tgetstr("cl", NULL), l->fd);
-	while (j < col)
+	/* while (j < col) */
+	/* { */
+	/* 	i = 0; */
+	/* 	while (i < li) */
+	/* 	{ */
+	/* 		if (tmp->us) */
+	/* 			ft_putstr_fd(tgetstr("us", NULL), l->fd); */
+	/* 		if (tmp->hl) */
+	/* 			ft_putstr_fd(tgetstr("mr", NULL), l->fd); */
+	/* 		ft_putstr_fd(tgoto(tgetstr("cm", NULL), j, i + START), l->fd); */
+	/* 		ft_putstr_fd(tmp->line, l->fd); */
+	/* 		ft_putstr_fd(tgetstr("me", NULL), l->fd); */
+	/* 		tmp = tmp->next; */
+	/* 		i++; */
+	/* 	} */
+	/* 	j += l->max_len + SPACE; */
+	/* } */
+	while (times < l->ac)
 	{
-		i = 0;
-		while (i < li)
+		if (i == l->row - 1)
 		{
-			if (tmp->us)
-				ft_putstr_fd(tgetstr("us", NULL), l->fd);
-			if (tmp->hl)
-				ft_putstr_fd(tgetstr("mr", NULL), l->fd);
-			ft_putstr_fd(tgoto(tgetstr("cm", NULL), j, i + START), l->fd);
-			ft_putstr_fd(tmp->line, l->fd);
-			ft_putstr_fd(tgetstr("me", NULL), l->fd);
-			tmp = tmp->next;
-			i++;
+			i = START;
+			j += l->max_len + SPACE;
 		}
-		j += l->max_len + SPACE;
+		if (tmp->us)
+			ft_putstr_fd(tgetstr("us", NULL), l->fd);
+		if (tmp->hl)
+			ft_putstr_fd(tgetstr("mr", NULL), l->fd);
+		ft_putstr_fd(tgoto(tgetstr("cm", NULL), j, i + START), l->fd);
+		ft_putstr_fd(tmp->line, l->fd);
+		ft_putstr_fd(tgetstr("me", NULL), l->fd);
+		tmp = tmp->next;
+		i++;
+		times++;
 	}
 }
 
