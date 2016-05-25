@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/24 17:25:32 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/25 15:49:42 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <signal.h>
 # include "libft.h"
 # define MAX_KEY_LENGTH 5
+// del?
 # define CL				tgetstr("cl", NULL)
 # define HO				tgetstr("ho", NULL)
 # define UP				tgetstr("up", NULL)
@@ -47,6 +48,9 @@
 # define K_DEL		2117294875
 # define K_BKSPC	127
 # define K_SPACE	32
+
+# define START		0
+# define SPACE		5
 
 typedef struct	s_entry
 {
