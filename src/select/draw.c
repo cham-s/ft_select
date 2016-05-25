@@ -27,25 +27,26 @@ void	draw(t_entlist *l)
 	i = 0;
 	j = 0;
 
-	int col = 2;
-	int lines = l->ac / 2;
+	int col = (l->max_len + 3) * 2;
+	int li = l->ac / 2;
 	tmp = l->head;
 	ft_putstr_fd(tgetstr("cl", NULL), l->fd);
 	while (i < col)
 	{
 		j = 0;
-		while (j < lines)
+		while (j < li)
 		{
 			if (tmp->us)
 				ft_putstr_fd(tgetstr("us", NULL), l->fd);
 			if (tmp->hl)
 				ft_putstr_fd(tgetstr("mr", NULL), l->fd);
-			tgoto(ft_putstr(tmp->line, l->fd), i, j, );
+			ft_putstr_fd(tgoto(tgetstr("cm", NULL), j, i), l->fd);
+			ft_putstr_fd(tgoto(tmp->line, i, j), l->fd);
 			ft_putstr_fd(tgetstr("me", NULL), l->fd);
 			tmp = tmp->next;
 			j++;
 		}
-		i++;
+		i += l->max_len + 3;
 	}
 }
 
