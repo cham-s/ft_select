@@ -6,11 +6,14 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:33 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/23 16:33:52 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/25 17:46:23 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+//
+struct winsize g_w;
 
 int	ft_putc(int c)
 {
@@ -37,6 +40,7 @@ int	main(int ac, char **av)
 		ft_putendl_fd("failed to open terminal device", 2);
 		exit(EXIT_FAILURE);
 	}
+	signal(SIGWINCH, win_resize_h);
 	init_term_data(&l);
 	init_raw_mode(&l.old_term);
 	init_entlist(&l, av, ac);

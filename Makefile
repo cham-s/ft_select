@@ -12,6 +12,7 @@ OBJS 		=	$(OBJDIR)/main.o\
 			   	$(OBJDIR)/draw.o\
 			   	$(OBJDIR)/init_entry.o\
 			   	$(OBJDIR)/launcher.o \
+			   	$(OBJDIR)/signal.o \
 
 .PHONY: all clean fclean re
 

@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/25 16:18:30 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/25 17:42:57 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef	struct	s_entlist
 	struct	termios	old_term;
 }				t_entlist;
 
+extern	struct winsize g_w;
+
 void	init_raw_mode(struct termios *old);
 void	reset_default_mode(struct termios *old);
 void	init_term_data(t_entlist *l);
@@ -87,5 +89,6 @@ void	set_draw(t_entlist *l);
 void	print_selected(t_entlist *l);
 int		delete_entry(t_entlist *l);
 void	quit(t_entlist *l);
+void	win_resize_h(int sig);
 
 #endif
