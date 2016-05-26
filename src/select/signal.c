@@ -1,4 +1,5 @@
 #include "ft_select.h"
+
 void	ctrl_z(int sig, t_entlist *l)
 {
 	char	ctrl_z[2];
@@ -16,6 +17,8 @@ void	ctrl_z(int sig, t_entlist *l)
 	}
 	else if (sig == SIGCONT)
 	{
+		ft_putstr_fd(tgetstr("vi", NULL), l->fd);
+		ft_putstr_fd(tgetstr("ti", NULL), l->fd);
 		signal(SIGTSTP, sig_handler);
 		init_raw_mode(&l->old_term);
 		draw(l);
@@ -42,7 +45,6 @@ void		sig_handler(int sig)
 	else
 		quit(l);
 }
-
 
 void		signals(void)
 {
