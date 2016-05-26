@@ -43,7 +43,7 @@ int	main(int ac, char **av)
 	ft_putstr_fd(tgetstr("vi", NULL), l->fd);
 	ft_putstr_fd(tgetstr("ti", NULL), l->fd);
 	init_entlist(l, av, ac);
-	sig_handle();
+	signals();
 	launcher(l);
 	reset_default_mode(&l->old_term);
 	print_selected(l);
