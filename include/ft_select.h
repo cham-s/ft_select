@@ -49,7 +49,7 @@
 # define K_BKSPC	127
 # define K_SPACE	32
 
-# define START		0
+# define START		0	
 # define SPACE		5
 
 # define MAX_SIGNAL 32
@@ -70,6 +70,7 @@ typedef	struct	s_entlist
 	int				fd;
 	int				row;
 	int				col;
+	int				col_max;
 	int				ac;
 	int				max_len;
 	struct	termios	old_term;
@@ -92,5 +93,7 @@ void		set_draw(t_entlist *l);
 void		print_selected(t_entlist *l);
 int			delete_entry(t_entlist *l);
 void		quit(t_entlist *l);
+int			check_window_size(t_entlist *l);
+int			nbr_col(t_entlist *l);
 
 #endif

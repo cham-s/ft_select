@@ -18,6 +18,7 @@ void	delete_key(t_entlist *l)
 {
 	if (delete_entry(l) < 0)
 	{
+		ft_putstr_fd(tgetstr("cl", NULL), l->fd);
 		ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 		ft_putstr_fd(tgetstr("te", NULL), l->fd);
 		reset_default_mode(&l->old_term);
@@ -33,14 +34,14 @@ int	launcher(t_entlist *l)
 	unsigned int	key;
 
 	set_draw(l);
-	while (is_running)
-	{
+	while (is_running) {
 		draw(l);
 		ft_bzero(buf, MAX_KEY_LENGTH);
 		read(0, buf, MAX_KEY_LENGTH);
 		key = *(unsigned int *)buf;
 		if (key == K_ENT)
 		{
+			ft_putstr_fd(tgetstr("cl", NULL), l->fd);
 			ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 			ft_putstr_fd(tgetstr("te", NULL), l->fd);
 			is_running = 0;

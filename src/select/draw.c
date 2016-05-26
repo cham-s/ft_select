@@ -30,24 +30,32 @@ void	draw(t_entlist *l)
 	times = 0;
 	tmp = l->head;
 	ft_putstr_fd(tgetstr("cl", NULL), l->fd);
-	//printf
-	while (times < l->ac)
+	l->col_max = nbr_col(l);
+	if (check_window_size(l) < 0)
 	{
-		if (i == l->row - 1)
+		ft_putstr_fd(tgoto(tgetstr("cm", NULL), l->col / 2 - SPACE, l->row / 2), l->fd);
+		ft_putstr_fd("window too small", l->fd);
+	}
+	else
+	{
+		while (times < l->ac)
 		{
-			i = START;
-			j += l->max_len + SPACE;
+			if (i == l->row)
+			{
+				i = START;
+				j += l->max_len + SPACE;
+			}
+			if (tmp->us)
+				ft_putstr_fd(tgetstr("us", NULL), l->fd);
+			if (tmp->hl)
+				ft_putstr_fd(tgetstr("mr", NULL), l->fd);
+			ft_putstr_fd(tgoto(tgetstr("cm", NULL), j, i + START), l->fd);
+			ft_putstr_fd(tmp->line, l->fd);
+			ft_putstr_fd(tgetstr("me", NULL), l->fd);
+			tmp = tmp->next;
+			i++;
+			times++;
 		}
-		if (tmp->us)
-			ft_putstr_fd(tgetstr("us", NULL), l->fd);
-		if (tmp->hl)
-			ft_putstr_fd(tgetstr("mr", NULL), l->fd);
-		ft_putstr_fd(tgoto(tgetstr("cm", NULL), j, i + START), l->fd);
-		ft_putstr_fd(tmp->line, l->fd);
-		ft_putstr_fd(tgetstr("me", NULL), l->fd);
-		tmp = tmp->next;
-		i++;
-		times++;
 	}
 }
 

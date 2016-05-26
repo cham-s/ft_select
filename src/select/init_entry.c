@@ -33,6 +33,31 @@ t_entry	*newentry(char *str)
 	return (new);
 }
 
+int		nbr_col(t_entlist *l)
+{
+	double	cols_float;
+	int		cols_int;
+
+	cols_float = (double)l->ac / (double)l->row;
+	if (cols_float == (int)cols_float)
+		cols_int = (int)cols_float;
+	else
+		cols_int = (int)cols_float + 1;
+	cols_int = (l->max_len + SPACE) * cols_int;
+	return (cols_int - SPACE);
+}
+
+int		check_window_size(t_entlist *l)
+{
+	//
+	//dprintf(l->fd, "col_max: %d col: %d row: %d ac: %d max_len: %d\n", l->col_max, l->col, l->row, l->ac, l->max_len);
+	if (l->max_len - SPACE > l->col && l->ac > l->row)
+		return (-1);
+	if (l->col_max >= l->col)
+		return (-1);
+	return (0);
+}
+
 void	init_entlist(t_entlist *l, char **av, int ac)
 {
 	t_entry		   	*tmp;
@@ -40,13 +65,14 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	struct winsize	w;
 
 	ioctl(l->fd, TIOCGWINSZ, &w);
-	l->row = w.ws_row;
+	l->row = w.ws_row - START;
 	l->col = w.ws_col;
 	l->head = NULL;
 	l->list = NULL;
 	l->ac = ac - 1;
 	l->max_len = 0;
 	getargs(ac, av, l);
+	//l->col_max = nbr_col(l);
 	l->head = l->list;
 	tmp = l->list;
 	slow = l->list;
@@ -122,6 +148,7 @@ void	free_entry(t_entry *e)
 
 void	quit(t_entlist *l)
 {
+	ft_putstr_fd(tgetstr("cl", NULL), l->fd);
 	ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 	ft_putstr_fd(tgetstr("te", NULL), l->fd);
 	entry_destroy(l);

@@ -11,9 +11,8 @@ void	ctrl_z(int sig, t_entlist *l)
 		signal(SIGTSTP, SIG_DFL);
 		ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 		ft_putstr_fd(tgetstr("te", NULL), l->fd);
-		ft_putstr_fd(tgetstr("cl", NULL), l->fd);
-		reset_default_mode(&l->old_term);
 		ioctl(0, TIOCSTI, ctrl_z);
+		reset_default_mode(&l->old_term);
 	}
 	else if (sig == SIGCONT)
 	{
@@ -36,7 +35,7 @@ void		sig_handler(int sig)
 	else if (sig == SIGWINCH)
 	{
 		ioctl(l->fd, TIOCGWINSZ, &w);
-		l->row = w.ws_row;
+		l->row = w.ws_row - START;
 		l->col = w.ws_col;
 		draw(l);
 	}
