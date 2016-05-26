@@ -30,7 +30,7 @@ void	check_args(int ac)
 int	main(int ac, char **av)
 {
 	t_entlist	*l;
-	//use malloc instead
+
 	l = ret_entlist();
 	check_args(ac);
 	if ((l->fd = open("/dev/tty", O_WRONLY)) < 0)
@@ -40,6 +40,8 @@ int	main(int ac, char **av)
 	}
 	init_term_data(l);
 	init_raw_mode(&l->old_term);
+	ft_putstr_fd(tgetstr("vi", NULL), l->fd);
+	ft_putstr_fd(tgetstr("ti", NULL), l->fd);
 	init_entlist(l, av, ac);
 	sig_handle();
 	launcher(l);
