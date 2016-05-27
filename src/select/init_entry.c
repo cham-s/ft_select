@@ -148,9 +148,7 @@ void	free_entry(t_entry *e)
 
 void	quit(t_entlist *l)
 {
-	ft_putstr_fd(tgetstr("cl", NULL), l->fd);
-	ft_putstr_fd(tgetstr("ve", NULL), l->fd);
-	ft_putstr_fd(tgetstr("te", NULL), l->fd);
+	clean_screen(l);
 	entry_destroy(l);
 	reset_default_mode(&l->old_term);
 	exit(EXIT_SUCCESS);

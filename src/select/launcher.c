@@ -14,14 +14,18 @@ void	go_up(t_entlist *l)
 	l->list->us = 1;
 }
 
-void	delete_key(t_entlist *l)
+void	clean_screen(t_entlist *l)
 {
-	if (delete_entry(l) < 0)
-	{
 		ft_putstr_fd(tgetstr("ho", NULL), l->fd);
 		ft_putstr_fd(tgetstr("cd", NULL), l->fd);
 		ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 		ft_putstr_fd(tgetstr("te", NULL), l->fd);
+}
+
+void	delete_key(t_entlist *l)
+{
+	if (delete_entry(l) < 0)
+	{
 		reset_default_mode(&l->old_term);
 		exit(0);
 	}
@@ -42,11 +46,7 @@ int	launcher(t_entlist *l)
 		key = *(unsigned int *)buf;
 		if (key == K_ENT)
 		{
-			//ft_putstr_fd(tgetstr("cl", NULL), l->fd);
-			ft_putstr_fd(tgetstr("ho", NULL), l->fd);
-			ft_putstr_fd(tgetstr("cd", NULL), l->fd);
-			ft_putstr_fd(tgetstr("ve", NULL), l->fd);
-			ft_putstr_fd(tgetstr("te", NULL), l->fd);
+			clean_screen(l);	
 			is_running = 0;
 		}
 		else

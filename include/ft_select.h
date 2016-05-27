@@ -95,5 +95,6 @@ int			delete_entry(t_entlist *l);
 void		quit(t_entlist *l);
 int			check_window_size(t_entlist *l);
 int			nbr_col(t_entlist *l);
+void		clean_screen(t_entlist *l);
 
 #endif
