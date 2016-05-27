@@ -29,7 +29,8 @@ void	draw(t_entlist *l)
 	j = 0;
 	times = 0;
 	tmp = l->head;
-	ft_putstr_fd(tgetstr("cl", NULL), l->fd);
+	ft_putstr_fd(tgetstr("ho", NULL), l->fd);
+	ft_putstr_fd(tgetstr("cd", NULL), l->fd);
 	l->col_max = nbr_col(l);
 	if (check_window_size(l) < 0)
 	{

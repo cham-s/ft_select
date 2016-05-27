@@ -18,7 +18,8 @@ void	delete_key(t_entlist *l)
 {
 	if (delete_entry(l) < 0)
 	{
-		ft_putstr_fd(tgetstr("cl", NULL), l->fd);
+		ft_putstr_fd(tgetstr("ho", NULL), l->fd);
+		ft_putstr_fd(tgetstr("cd", NULL), l->fd);
 		ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 		ft_putstr_fd(tgetstr("te", NULL), l->fd);
 		reset_default_mode(&l->old_term);
@@ -41,7 +42,9 @@ int	launcher(t_entlist *l)
 		key = *(unsigned int *)buf;
 		if (key == K_ENT)
 		{
-			ft_putstr_fd(tgetstr("cl", NULL), l->fd);
+			//ft_putstr_fd(tgetstr("cl", NULL), l->fd);
+			ft_putstr_fd(tgetstr("ho", NULL), l->fd);
+			ft_putstr_fd(tgetstr("cd", NULL), l->fd);
 			ft_putstr_fd(tgetstr("ve", NULL), l->fd);
 			ft_putstr_fd(tgetstr("te", NULL), l->fd);
 			is_running = 0;

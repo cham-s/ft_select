@@ -11,10 +11,10 @@ void	init_raw_mode(struct termios *old)
 	}
 
 	termattr = *old;
-	termattr.c_lflag &= ~(ECHO | ICANON);
+	termattr.c_lflag &= ~(ICANON | ECHO);
 	termattr.c_cc[VMIN] = 1;
 	termattr.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSADRAIN, &termattr) == -1)
+	if (tcsetattr(0, TCSANOW, &termattr) == -1)
 	{
 		ft_putendl_fd("failed to setattr", 2);
 		exit(EXIT_FAILURE);
