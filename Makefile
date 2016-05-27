@@ -4,7 +4,7 @@ OBJDIR		= obj
 LIB			= libft/libft.a 
 FLAGS		= -Wall -Werror -Wextra
 INCLUDES	= -I include -I libft/includes
-INC			=
+INC			= include/ft_select.h
 OBJS 		=	$(OBJDIR)/main.o\
 			   	$(OBJDIR)/init_term.o\
 			   	$(OBJDIR)/parser.o\
@@ -26,7 +26,7 @@ $(NAME): $(LIB) $(OBJS)
 $(LIB):
 	make -C libft/
 
-$(OBJDIR)/%.o : %.c 
+$(OBJDIR)/%.o : %.c $(INC)
 	@mkdir -p $(OBJDIR)
 	$(CC) -c $(FLAGS) $(INCLUDES) $< -o $@ 
 

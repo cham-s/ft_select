@@ -80,5 +80,6 @@ void	print_selected(t_entlist *l)
 			}
 			tmp = tmp->next;
 		}
+		ft_putchar('\n');
 	}
 }

@@ -49,7 +49,7 @@
 # define K_BKSPC	127
 # define K_SPACE	32
 
-# define START		0	
+# define START		1	
 # define SPACE		5
 
 # define MAX_SIGNAL 32
