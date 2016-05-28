@@ -6,11 +6,23 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:43 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/28 17:34:35 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/28 17:58:28 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+void	print_entry_color(t_entlist *l, char *path)
+{
+	struct	stat	file;
+
+	if (stat(path ,&file) < 0)
+			ft_putstr_fd(path, l->fd);
+	else
+	{
+		if 
+	}
+}
 
 void	set_draw(t_entlist *l)
 {
@@ -54,7 +66,7 @@ void	draw(t_entlist *l)
 			if (tmp->hl)
 				ft_putstr_fd(tgetstr("mr", NULL), l->fd);
 			ft_putstr_fd(tgoto(tgetstr("cm", NULL), j, i + START), l->fd);
-			ft_putstr_fd(tmp->line, l->fd);
+			print_entry_color(l, tmp->line);
 			ft_putstr_fd(tgetstr("me", NULL), l->fd);
 			tmp = tmp->next;
 			i++;
