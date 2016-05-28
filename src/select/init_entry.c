@@ -6,11 +6,26 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:47 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/25 16:07:59 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/28 17:43:07 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+void		select_all(t_entlist *l, int value)
+{
+	t_entry *tmp;
+	int		i;
+
+	i = 0;
+	tmp = l->head;
+	while (i < l->ac)
+	{
+		tmp->hl = value;
+		tmp = tmp->next;
+		i++;
+	}
+}
 
 t_entlist	*ret_entlist(void)
 {
@@ -71,6 +86,7 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	l->list = NULL;
 	l->ac = ac - 1;
 	l->max_len = 0;
+	l->sel_v = 0;
 	getargs(ac, av, l);
 	l->head = l->list;
 	tmp = l->list;

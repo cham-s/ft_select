@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/25 17:42:57 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/28 17:45:19 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/ioctl.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <sys/stat.h>
 # include "libft.h"
 # define MAX_KEY_LENGTH 5
 // del?
@@ -48,6 +49,7 @@
 # define K_DEL		2117294875
 # define K_BKSPC	127
 # define K_SPACE	32
+# define K_a		'a'	
 
 # define START		1	
 # define SPACE		4
@@ -74,6 +76,7 @@ typedef	struct	s_entlist
 	int				col_max;
 	int				ac;
 	int				max_len;
+	int				sel_v;
 	struct	termios	old_term;
 }				t_entlist;
 
@@ -97,5 +100,6 @@ void		quit(t_entlist *l);
 int			check_window_size(t_entlist *l);
 int			nbr_col(t_entlist *l);
 void		clean_screen(t_entlist *l);
+void		select_all(t_entlist *l, int value);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:43 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/25 17:42:25 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/28 17:34:35 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	draw(t_entlist *l)
 	l->col_max = nbr_col(l);
 	if (check_window_size(l) < 0)
 	{
-		ft_putstr_fd(tgoto(tgetstr("cm", NULL), l->col / 2 - SPACE, l->row / 2), l->fd);
+		ft_putstr_fd(tgoto(tgetstr("cm", NULL),
+							l->col / 2 - SPACE, l->row / 2), l->fd);
 		ft_putstr_fd("window too small", l->fd);
 	}
 	else

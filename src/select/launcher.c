@@ -55,6 +55,11 @@ void	key_handler(unsigned int key, t_entlist *l, int *running)
 		}
 		else if (key == K_DEL || key == K_BKSPC)
 			delete_key(l);
+		else if (key == K_a)
+		{
+			l->sel_v = (l->sel_v == 0? 1 : 0);
+			select_all(l, l->sel_v);
+		}
 	}
 }
 
