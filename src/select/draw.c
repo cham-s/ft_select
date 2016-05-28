@@ -20,7 +20,20 @@ void	print_entry_color(t_entlist *l, char *path)
 			ft_putstr_fd(path, l->fd);
 	else
 	{
-		if 
+		if (file.st_mode & S_IXUSR && !S_ISDIR(file.st_mode))
+		{
+			ft_putstr_fd("\e[31m", l->fd);
+			ft_putstr_fd(path, l->fd);
+			ft_putstr_fd("\e[0m", l->fd);
+		}
+		else if (S_ISDIR(file.st_mode))
+		{
+			ft_putstr_fd("\e[34m", l->fd);
+			ft_putstr_fd(path, l->fd);
+			ft_putstr_fd("\e[0m", l->fd);
+		}
+		else
+			ft_putstr_fd(path, l->fd);
 	}
 }
 
