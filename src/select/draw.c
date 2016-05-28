@@ -14,6 +14,8 @@
 
 void	set_draw(t_entlist *l)
 {
+	ft_putstr(tgetstr("ho", NULL));
+	ft_putstr(tgetstr("cd", NULL));
 	if (l->head)
 		l->head->us = 1;
 }

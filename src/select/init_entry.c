@@ -65,14 +65,13 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	struct winsize	w;
 
 	ioctl(l->fd, TIOCGWINSZ, &w);
-	l->row = w.ws_row - START;
+	l->row = w.ws_row - PAD / 2;
 	l->col = w.ws_col;
 	l->head = NULL;
 	l->list = NULL;
 	l->ac = ac - 1;
 	l->max_len = 0;
 	getargs(ac, av, l);
-	//l->col_max = nbr_col(l);
 	l->head = l->list;
 	tmp = l->list;
 	slow = l->list;

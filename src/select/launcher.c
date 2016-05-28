@@ -58,13 +58,14 @@ void	key_handler(unsigned int key, t_entlist *l, int *running)
 	}
 }
 
-int	launcher(t_entlist *l)
+int		launcher(t_entlist *l)
 {
 	char			buf[MAX_KEY_LENGTH];
-	int				is_running = 1;
+	int				is_running;
 	unsigned int	key;
 
 	set_draw(l);
+	is_running = 1;
 	while (is_running) {
 		draw(l);
 		ft_bzero(buf, MAX_KEY_LENGTH);

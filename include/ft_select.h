@@ -50,7 +50,8 @@
 # define K_SPACE	32
 
 # define START		1	
-# define SPACE		5
+# define SPACE		4
+# define PAD		4
 
 # define MAX_SIGNAL 32
 
