@@ -89,5 +89,7 @@ void		clean_screen(t_entlist *l);
 void		select_all(t_entlist *l, int value);
 void		print_entry_color(t_entlist *l, char *path);
 void		check_args(int ac);
+void		go_down(t_entlist *l);
+void		go_up(t_entlist *l);
 
 #endif

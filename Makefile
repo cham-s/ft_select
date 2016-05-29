@@ -16,6 +16,7 @@ OBJS 		=	$(OBJDIR)/main.o\
 			   	$(OBJDIR)/launcher.o \
 			   	$(OBJDIR)/signal.o \
 			   	$(OBJDIR)/event.o \
+			   	$(OBJDIR)/event2.o \
 
 .PHONY: all clean fclean re
 

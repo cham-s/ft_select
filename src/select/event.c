@@ -1,6 +1,6 @@
 #include "ft_select.h"
 
-int		check_window_size(t_entlist *l)
+int			check_window_size(t_entlist *l)
 {
 	//
 	//dprintf(l->fd, "col_max: %d col: %d row: %d ac: %d max_len: %d\n", l->col_max, l->col, l->row, l->ac, l->max_len);
@@ -36,7 +36,7 @@ static void	free_entry(t_entry *e)
 	e = NULL;
 }
 
-int		delete_entry(t_entlist *l)
+int			delete_entry(t_entlist *l)
 {
 	t_entry	*tmp;
 	int		y;
@@ -53,7 +53,7 @@ int		delete_entry(t_entlist *l)
 	return (l->ac == 0? -1 : 0);
 }
 
-void	quit(t_entlist *l)
+void		quit(t_entlist *l)
 {
 	clean_screen(l);
 	entry_destroy(l);
