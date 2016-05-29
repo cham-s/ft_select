@@ -11,6 +11,34 @@ void	delete_key(t_entlist *l)
 	l->list->us = 1;
 }
 
+void	go_right(t_entlist *l)
+{
+	int i = 0;
+	l->list->us = 0;
+	while (i < l->row)
+	{
+		if (l->list->next == l->head)
+			break;
+		l->list = l->list->next;
+		i++;
+	}
+	l->list->us = 1;
+}
+
+void	go_left(t_entlist *l)
+{
+	int i = 0;
+	l->list->us = 0;
+	while (i < l->row)
+	{
+		if (l->list->prev == l->head)
+			break;
+		l->list = l->list->prev;
+		i++;
+	}
+	l->list->us = 1;
+}
+
 void	key_handler(unsigned int key, t_entlist *l, int *running)
 {
 	if (key == K_ENT)
@@ -22,10 +50,14 @@ void	key_handler(unsigned int key, t_entlist *l, int *running)
 	{
 		if (key == K_ESC)
 			quit(l);
-		else if (key == K_DOWN || key == K_RIGHT)
+		else if (key == K_DOWN)
 			go_down(l);
-		else if (key == K_UP || key == K_LEFT)
+		else if (key == K_UP)
 			go_up(l);
+		else if (key == K_RIGHT)
+			go_right(l);
+		else if (key == K_LEFT)
+			go_left(l);
 		else if (key == K_SPACE)
 		{
 			l->list->hl = l->list->hl == 0? 1: 0;
@@ -41,6 +73,7 @@ void	key_handler(unsigned int key, t_entlist *l, int *running)
 	}
 }
 
+
 int		launcher(t_entlist *l)
 {
 	char			buf[MAX_KEY_LENGTH];
@@ -49,7 +82,8 @@ int		launcher(t_entlist *l)
 
 	set_draw(l);
 	is_running = 1;
-	while (is_running) {
+	while (is_running)
+	{
 		draw(l);
 		ft_bzero(buf, MAX_KEY_LENGTH);
 		read(0, buf, MAX_KEY_LENGTH);

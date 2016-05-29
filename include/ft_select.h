@@ -32,9 +32,9 @@
 # define K_DEL		2117294875
 # define K_BKSPC	127
 # define K_SPACE	32
-# define K_a		'a'	
+# define K_a		'a'
 
-# define START		1	
+# define START		0
 # define SPACE		4
 # define PAD		4
 

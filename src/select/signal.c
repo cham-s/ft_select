@@ -56,4 +56,3 @@ void		signals(void)
 		i++;
 	}
 }
-
