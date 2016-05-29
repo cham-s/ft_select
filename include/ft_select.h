@@ -21,23 +21,6 @@
 # include <sys/stat.h>
 # include "libft.h"
 # define MAX_KEY_LENGTH 5
-// del?
-# define CL				tgetstr("cl", NULL)
-# define HO				tgetstr("ho", NULL)
-# define UP				tgetstr("up", NULL)
-# define DO				tgetstr("do", NULL)
-# define US				tgetstr("us", NULL)
-# define UE				tgetstr("ue", NULL)
-# define ME				tgetstr("me", NULL)
-# define MR				tgetstr("mr", NULL)
-# define VI				tgetstr("vi", NULL)
-# define VE				tgetstr("ve", NULL)
-# define CD				tgetstr("cd", NULL)
-# define CE				tgetstr("ce", NULL)
-# define CM				tgetstr("cm", NULL)
-# define TI				tgetstr("cm", NULL)
-# define TE				tgetstr("te", NULL)
-# define GOTO(c, l)		tgoto(CM, c, l)
 
 # define K_UP		4283163
 # define K_DOWN		4348699
@@ -77,6 +60,9 @@ typedef	struct	s_entlist
 	int				ac;
 	int				max_len;
 	int				sel_v;
+	int				i;
+	int				j;
+	int				times;
 	struct	termios	old_term;
 }				t_entlist;
 

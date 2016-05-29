@@ -28,11 +28,9 @@ void	print_entry_color(t_entlist *l, char *path)
 		}
 		else if (S_ISDIR(file.st_mode))
 		{
-			char *s = ft_strjoin(path, "\e[0m");
 			ft_putstr_fd("\e[34m", l->fd);
-			ft_putstr_fd(s, l->fd);
-			//ft_putstr_fd(path, l->fd);
-			//ft_putstr_fd("\e[0m", l->fd);
+			ft_putstr_fd(path, l->fd);
+			ft_putstr_fd("\e[0m", l->fd);
 		}
 		else
 			ft_putstr_fd(path, l->fd);
@@ -47,17 +45,12 @@ void	set_draw(t_entlist *l)
 		l->head->us = 1;
 }
 
-void	draw(t_entlist *l)
+static int	init_draw(t_entlist *l)
 {
-	t_entry *tmp;
-	int		i;
-	int		j;
-	int		times;
 
-	i = START;
-	j = 0;
-	times = 0;
-	tmp = l->head;
+	l->i = START;
+	l->j = 0;
+	l->times = 0;
 	ft_putstr_fd(tgetstr("ho", NULL), l->fd);
 	ft_putstr_fd(tgetstr("cd", NULL), l->fd);
 	l->col_max = nbr_col(l);
@@ -66,27 +59,35 @@ void	draw(t_entlist *l)
 		ft_putstr_fd(tgoto(tgetstr("cm", NULL),
 							l->col / 2 - SPACE, l->row / 2), l->fd);
 		ft_putstr_fd("window too small", l->fd);
+		return (-1);
 	}
-	else
+	return (0);
+}
+
+void	draw(t_entlist *l)
+{
+	t_entry *tmp;
+
+	tmp = l->head;
+	if (init_draw(l) < 0)
+		return ;
+	while (l->times < l->ac)
 	{
-		while (times < l->ac)
+		if (l->i == l->row)
 		{
-			if (i == l->row)
-			{
-				i = START;
-				j += l->max_len + SPACE;
-			}
-			if (tmp->us)
-				ft_putstr_fd(tgetstr("us", NULL), l->fd);
-			if (tmp->hl)
-				ft_putstr_fd(tgetstr("mr", NULL), l->fd);
-			ft_putstr_fd(tgoto(tgetstr("cm", NULL), j, i + START), l->fd);
-			print_entry_color(l, tmp->line);
-			ft_putstr_fd(tgetstr("me", NULL), l->fd);
-			tmp = tmp->next;
-			i++;
-			times++;
+			l->i = START;
+			l->j += l->max_len + SPACE;
 		}
+		if (tmp->us)
+			ft_putstr_fd(tgetstr("us", NULL), l->fd);
+		if (tmp->hl)
+			ft_putstr_fd(tgetstr("mr", NULL), l->fd);
+		ft_putstr_fd(tgoto(tgetstr("cm", NULL), l->j, l->i + START), l->fd);
+		print_entry_color(l, tmp->line);
+		ft_putstr_fd(tgetstr("me", NULL), l->fd);
+		tmp = tmp->next;
+		l->i++;
+		l->times++;
 	}
 }
 
@@ -97,7 +98,7 @@ void	print_selected(t_entlist *l)
 	int			j;
 
 	j = 0;
-	ft_putstr_fd(ME,l->fd);
+	ft_putstr_fd(tgetstr("me", NULL), l->fd);
 	tmp = l->head;
 	if (l->head != NULL)
 	{
@@ -112,6 +113,7 @@ void	print_selected(t_entlist *l)
 			tmp = tmp->next;
 			j++;
 		}
-		ft_putchar('\n');
+		if (i != 0)
+			ft_putchar('\n');
 	}
 }
