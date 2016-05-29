@@ -10,9 +10,12 @@ OBJS 		=	$(OBJDIR)/main.o\
 			   	$(OBJDIR)/parser.o\
 			   	$(OBJDIR)/attr.o\
 			   	$(OBJDIR)/draw.o\
+			   	$(OBJDIR)/draw2.o\
 			   	$(OBJDIR)/init_entry.o\
+			   	$(OBJDIR)/init_entry2.o\
 			   	$(OBJDIR)/launcher.o \
 			   	$(OBJDIR)/signal.o \
+			   	$(OBJDIR)/event.o \
 
 .PHONY: all clean fclean re
 

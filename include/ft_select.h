@@ -88,5 +88,6 @@ int			nbr_col(t_entlist *l);
 void		clean_screen(t_entlist *l);
 void		select_all(t_entlist *l, int value);
 void		print_entry_color(t_entlist *l, char *path);
+void		check_args(int ac);
 
 #endif

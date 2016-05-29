@@ -12,15 +12,6 @@
 
 #include "ft_select.h"
 
-void	check_args(int ac)
-{
-	if (!(ac > 1))
-	{
-		ft_putendl_fd("usage: ./ft_select args[...]", 2);
-		exit(EXIT_FAILURE);
-	}
-}
-
 int	main(int ac, char **av)
 {
 	t_entlist	*l;
