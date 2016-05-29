@@ -28,9 +28,11 @@ void	print_entry_color(t_entlist *l, char *path)
 		}
 		else if (S_ISDIR(file.st_mode))
 		{
+			char *s = ft_strjoin(path, "\e[0m");
 			ft_putstr_fd("\e[34m", l->fd);
-			ft_putstr_fd(path, l->fd);
-			ft_putstr_fd("\e[0m", l->fd);
+			ft_putstr_fd(s, l->fd);
+			//ft_putstr_fd(path, l->fd);
+			//ft_putstr_fd("\e[0m", l->fd);
 		}
 		else
 			ft_putstr_fd(path, l->fd);
@@ -92,13 +94,14 @@ void	print_selected(t_entlist *l)
 {
 	t_entry		*tmp;
 	static int	i = 0;
+	int			j;
 
-	i = 0;
+	j = 0;
 	ft_putstr_fd(ME,l->fd);
 	tmp = l->head;
 	if (l->head != NULL)
 	{
-		while (tmp->next != l->head)
+		while (j < l->ac)
 		{
 			if (tmp->hl)
 			{
@@ -107,6 +110,7 @@ void	print_selected(t_entlist *l)
 				ft_putstr(tmp->line);
 			}
 			tmp = tmp->next;
+			j++;
 		}
 		ft_putchar('\n');
 	}
