@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:19:09 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 17:20:40 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 18:32:13 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	print_entry_color(t_entlist *l, char *path)
 
 void	set_draw(t_entlist *l)
 {
-	ft_putstr(tgetstr("ho", NULL));
-	ft_putstr(tgetstr("cd", NULL));
 	if (l->head)
 		l->head->us = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:43 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 16:29:53 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 18:27:30 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void		print_selected(t_entlist *l)
 	int			j;
 
 	j = 0;
-	ft_putstr_fd(tgetstr("me", NULL), l->fd);
 	tmp = l->head;
 	if (l->head != NULL)
 	{

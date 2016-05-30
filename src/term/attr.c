@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:01:14 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 17:01:23 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 18:26:44 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_raw_mode(struct termios *old)
 	termattr.c_lflag &= ~(ICANON | ECHO);
 	termattr.c_cc[VMIN] = 1;
 	termattr.c_cc[VTIME] = 0;
-	if (tcsetattr(0, TCSANOW, &termattr) == -1)
+	if (tcsetattr(0, TCSADRAIN, &termattr) == -1)
 	{
 		ft_putendl_fd("failed to setattr", 2);
 		exit(EXIT_FAILURE);
