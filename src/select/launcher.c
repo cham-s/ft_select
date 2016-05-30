@@ -39,6 +39,35 @@ void	go_left(t_entlist *l)
 	l->list->us = 1;
 }
 
+int		str_has_chars(char *str, char *search_buf)
+{
+	int	i;
+	int	size;
+
+	i = 0;
+	size = 0;
+	while (search_buf[i])
+	{
+		size = ft_strchr(str, search_buf[i])? size += 1 : size;
+		i += 1;
+	}
+	return (size == (int)ft_strlen(search_buf)? 1 : 0);
+}
+
+void	mark_search(t_entlist *l, char *search_buf)
+{
+	t_entry	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = l->head;
+	while (i < l->ac)
+	{
+		tmp->search = str_has_chars(tmp->line, search_buf);
+		i += 1;
+	}
+}
+
 void	key_handler(unsigned int key, t_entlist *l, int *running)
 {
 	if (key == K_ENT)
