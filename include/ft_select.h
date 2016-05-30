@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 17:15:01 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 19:00:19 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define K_SPACE	32
 # define K_A		'a'
 
-# define START		0
+# define START		2
 # define SPACE		4
 # define PAD		4
 

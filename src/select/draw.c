@@ -6,16 +6,23 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:43 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 18:27:30 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 19:02:03 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
+static void	printf_menu(t_enlist *l)
+{
+	ft_putstr_fd(tgoto(tgetstr("cm", NULL),
+						l->col / 2 - SPACE, l->row / 2), l->fd);
+	ft_putstr_fd("window too small", l->fd);
+}
+
 static int	init_draw(t_entlist *l)
 {
 	l->i = START;
-	l->j = 0;
+	l->j = PAD;
 	l->times = 0;
 	ft_putstr_fd(tgetstr("ho", NULL), l->fd);
 	ft_putstr_fd(tgetstr("cd", NULL), l->fd);
@@ -39,7 +46,7 @@ void		draw(t_entlist *l)
 		return ;
 	while (l->times < l->ac)
 	{
-		if (l->i == l->row)
+		if (l->i == l->row - START)
 		{
 			l->i = START;
 			l->j += l->max_len + SPACE;
@@ -48,7 +55,7 @@ void		draw(t_entlist *l)
 			ft_putstr_fd(tgetstr("us", NULL), l->fd);
 		if (tmp->hl)
 			ft_putstr_fd(tgetstr("mr", NULL), l->fd);
-		ft_putstr_fd(tgoto(tgetstr("cm", NULL), l->j, l->i + START), l->fd);
+		ft_putstr_fd(tgoto(tgetstr("cm", NULL), l->j, l->i), l->fd);
 		print_entry_color(l, tmp->line);
 		ft_putstr_fd(tgetstr("me", NULL), l->fd);
 		tmp = tmp->next;

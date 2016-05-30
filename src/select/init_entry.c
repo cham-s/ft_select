@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:19:42 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 17:19:43 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 18:38:39 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	struct winsize	w;
 
 	ioctl(l->fd, TIOCGWINSZ, &w);
-	l->row = w.ws_row;
+	l->row = w.ws_row + START;
 	l->col = w.ws_col;
 	l->head = NULL;
 	l->list = NULL;

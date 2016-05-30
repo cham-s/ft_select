@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 16:53:36 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 16:53:55 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 18:51:43 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,10 @@ void		sig_handler(int sig)
 	struct winsize	w;
 
 	l = ret_entlist();
-	if (sig == SIGINT)
-		quit(l);
-	else if (sig == SIGWINCH)
+	if (sig == SIGWINCH)
 	{
 		ioctl(l->fd, TIOCGWINSZ, &w);
-		l->row = w.ws_row - START;
+		l->row = w.ws_row + START;
 		l->col = w.ws_col;
 		draw(l);
 	}
