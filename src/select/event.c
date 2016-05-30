@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 16:32:54 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 16:33:18 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 17:21:05 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int			check_window_size(t_entlist *l)
 {
-	//
-	//dprintf(l->fd, "col_max: %d col: %d row: %d ac: %d max_len: %d\n", l->col_max, l->col, l->row, l->ac, l->max_len);
 	if (l->max_len - SPACE > l->col && l->ac > l->row)
 		return (-1);
 	if (l->col_max >= l->col)

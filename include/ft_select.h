@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 16:50:30 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 17:15:01 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define K_DEL		2117294875
 # define K_BKSPC	127
 # define K_SPACE	32
-# define K_a		'a'
+# define K_A		'a'
 
 # define START		0
 # define SPACE		4
@@ -40,16 +40,16 @@
 
 # define MAX_SIGNAL 32
 
-typedef struct	s_entry
+typedef struct		s_entry
 {
 	char			*line;
 	int				hl;
 	int				us;
 	struct s_entry	*next;
 	struct s_entry	*prev;
-}				t_entry;
+}					t_entry;
 
-typedef	struct	s_entlist
+typedef	struct		s_entlist
 {
 	t_entry			*head;
 	t_entry			*list;
@@ -63,37 +63,37 @@ typedef	struct	s_entlist
 	int				i;
 	int				j;
 	int				times;
-	struct	termios	old_term;
-}				t_entlist;
+	struct termios	old_term;
+}					t_entlist;
 
-t_entlist	*ret_entlist(void);
-void		sig_handler(int sig);
-void		signals(void);
-void		init_raw_mode(struct termios *old);
-void		reset_default_mode(struct termios *old);
-void		init_term_data(t_entlist *l);
-void		entry_destroy(t_entlist *l);
-void		getargs(int ac, char **av, t_entlist *l);
-void		addentry(t_entlist *list, t_entry *new);
-void		init_entlist(t_entlist *l, char **av, int ac);
-t_entry		*newentry(char *str);
-int			launcher(t_entlist *l);
-void		draw(t_entlist *l);
-void		set_draw(t_entlist *l);
-void		print_selected(t_entlist *l);
-int			delete_entry(t_entlist *l);
-void		quit(t_entlist *l);
-int			check_window_size(t_entlist *l);
-int			nbr_col(t_entlist *l);
-void		clean_screen(t_entlist *l);
-void		select_all(t_entlist *l, int value);
-void		print_entry_color(t_entlist *l, char *path);
-void		check_args(int ac);
-void		go_down(t_entlist *l);
-void		go_up(t_entlist *l);
-void		go_left(t_entlist *l);
-void		go_right(t_entlist *l);
-void		delete_key(t_entlist *l);
-void		key_handler(unsigned int key, t_entlist *l, int *running);
+t_entlist			*ret_entlist(void);
+void				sig_handler(int sig);
+void				signals(void);
+void				init_raw_mode(struct termios *old);
+void				reset_default_mode(struct termios *old);
+void				init_term_data(t_entlist *l);
+void				entry_destroy(t_entlist *l);
+void				getargs(int ac, char **av, t_entlist *l);
+void				addentry(t_entlist *list, t_entry *new);
+void				init_entlist(t_entlist *l, char **av, int ac);
+t_entry				*newentry(char *str);
+int					launcher(t_entlist *l);
+void				draw(t_entlist *l);
+void				set_draw(t_entlist *l);
+void				print_selected(t_entlist *l);
+int					delete_entry(t_entlist *l);
+void				quit(t_entlist *l);
+int					check_window_size(t_entlist *l);
+int					nbr_col(t_entlist *l);
+void				clean_screen(t_entlist *l);
+void				select_all(t_entlist *l, int value);
+void				print_entry_color(t_entlist *l, char *path);
+void				check_args(int ac);
+void				go_down(t_entlist *l);
+void				go_up(t_entlist *l);
+void				go_left(t_entlist *l);
+void				go_right(t_entlist *l);
+void				delete_key(t_entlist *l);
+void				key_handler(unsigned int key, t_entlist *l, int *running);
 
 #endif

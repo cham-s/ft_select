@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 16:33:44 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 16:52:44 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 17:14:21 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	special_keys(unsigned int key, t_entlist *l)
 	}
 	else if (key == K_DEL || key == K_BKSPC)
 		delete_key(l);
-	else if (key == K_a)
+	else if (key == K_A)
 	{
 		l->sel_v = l->sel_v == 0 ? 1 : 0;
 		select_all(l, l->sel_v);

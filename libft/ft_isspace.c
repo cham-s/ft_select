@@ -6,13 +6,13 @@
 /*   By: cattouma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 15:13:03 by cattouma          #+#    #+#             */
-/*   Updated: 2016/04/15 15:13:05 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 17:16:18 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	unsigned char tc;
 
