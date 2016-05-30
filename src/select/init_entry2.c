@@ -1,12 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_entry2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/30 16:39:06 by cattouma          #+#    #+#             */
+/*   Updated: 2016/05/30 16:39:44 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 t_entlist	*ret_entlist(void)
 {
 	static t_entlist l;
+
 	return (&l);
 }
 
-t_entry	*newentry(char *str)
+t_entry		*newentry(char *str)
 {
 	t_entry *new;
 
@@ -21,7 +34,7 @@ t_entry	*newentry(char *str)
 	return (new);
 }
 
-int		nbr_col(t_entlist *l)
+int			nbr_col(t_entlist *l)
 {
 	double	cols_float;
 	int		cols_int;

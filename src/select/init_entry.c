@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:47 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/28 17:43:07 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 16:38:49 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_entlist(t_entlist *l, char **av, int ac)
 {
-	t_entry		   	*tmp;
-	t_entry		   	*slow;
+	t_entry			*tmp;
+	t_entry			*slow;
 	struct winsize	w;
 
 	ioctl(l->fd, TIOCGWINSZ, &w);
@@ -33,7 +33,7 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	while (tmp->next)
 	{
 		tmp = tmp->next;
-		tmp->prev = slow; 
+		tmp->prev = slow;
 		slow = slow->next;
 	}
 	tmp->next = l->head;
@@ -64,7 +64,7 @@ void	getargs(int ac, char **av, t_entlist *l)
 	while (ac-- > 1)
 	{
 		max_len = ft_strlen(av[i]);
-		l->max_len = max_len > l->max_len? max_len : l->max_len; 
+		l->max_len = max_len > l->max_len ? max_len : l->max_len;
 		addentry(l, newentry(av[i]));
 		i++;
 	}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/30 16:32:54 by cattouma          #+#    #+#             */
+/*   Updated: 2016/05/30 16:33:18 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 int			check_window_size(t_entlist *l)
@@ -41,7 +53,7 @@ int			delete_entry(t_entlist *l)
 	t_entry	*tmp;
 	int		y;
 
-	y = (l->list == l->head? 1 : 0);
+	y = (l->list == l->head ? 1 : 0);
 	tmp = l->list;
 	l->list = l->list->next;
 	tmp->prev->next = l->list;
@@ -50,7 +62,7 @@ int			delete_entry(t_entlist *l)
 	if (y)
 		l->head = l->list;
 	l->ac--;
-	return (l->ac == 0? -1 : 0);
+	return (l->ac == 0 ? -1 : 0);
 }
 
 void		quit(t_entlist *l)

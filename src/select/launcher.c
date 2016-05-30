@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   launcher.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/30 16:41:07 by cattouma          #+#    #+#             */
+/*   Updated: 2016/05/30 16:50:19 by cattouma         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 void	delete_key(t_entlist *l)
@@ -13,12 +25,14 @@ void	delete_key(t_entlist *l)
 
 void	go_right(t_entlist *l)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	l->list->us = 0;
 	while (i < l->row)
 	{
 		if (l->list->next == l->head)
-			break;
+			break ;
 		l->list = l->list->next;
 		i++;
 	}
@@ -27,52 +41,19 @@ void	go_right(t_entlist *l)
 
 void	go_left(t_entlist *l)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	l->list->us = 0;
 	while (i < l->row)
 	{
 		if (l->list->prev == l->head)
-			break;
+			break ;
 		l->list = l->list->prev;
 		i++;
 	}
 	l->list->us = 1;
 }
-
-void	key_handler(unsigned int key, t_entlist *l, int *running)
-{
-	if (key == K_ENT)
-	{
-		clean_screen(l);	
-		*running = 0;
-	}
-	else
-	{
-		if (key == K_ESC)
-			quit(l);
-		else if (key == K_DOWN)
-			go_down(l);
-		else if (key == K_UP)
-			go_up(l);
-		else if (key == K_RIGHT)
-			go_right(l);
-		else if (key == K_LEFT)
-			go_left(l);
-		else if (key == K_SPACE)
-		{
-			l->list->hl = l->list->hl == 0? 1: 0;
-			go_down(l);
-		}
-		else if (key == K_DEL || key == K_BKSPC)
-			delete_key(l);
-		else if (key == K_a)
-		{
-			l->sel_v = (l->sel_v == 0? 1 : 0);
-			select_all(l, l->sel_v);
-		}
-	}
-}
-
 
 int		launcher(t_entlist *l)
 {

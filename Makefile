@@ -1,13 +1,12 @@
-NAME		= ft_select 
+NAME		= ft_select
 CC 			= clang
 OBJDIR		= obj
-LIB			= libft/libft.a 
+LIB			= libft/libft.a
 FLAGS		= -Wall -Werror -Wextra
 INCLUDES	= -I include -I libft/includes
 INC			= include/ft_select.h
 OBJS 		=	$(OBJDIR)/main.o\
 			   	$(OBJDIR)/init_term.o\
-			   	$(OBJDIR)/parser.o\
 			   	$(OBJDIR)/attr.o\
 			   	$(OBJDIR)/draw.o\
 			   	$(OBJDIR)/draw2.o\
@@ -24,7 +23,7 @@ VPATH = src/select:src/term
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(OBJS) 
+$(NAME): $(LIB) $(OBJS)
 	$(CC) $(FLAGS) $(INCLUDES) $(OBJS) $(LIB) -o $(NAME) -ltermcap
 
 $(LIB):
@@ -32,7 +31,7 @@ $(LIB):
 
 $(OBJDIR)/%.o : %.c $(INC)
 	@mkdir -p $(OBJDIR)
-	$(CC) -c $(FLAGS) $(INCLUDES) $< -o $@ 
+	$(CC) -c $(FLAGS) $(INCLUDES) $< -o $@
 
 clean:
 	rm -rf $(OBJDIR)
@@ -40,6 +39,5 @@ clean:
 fclean: clean
 	make fclean -C libft/
 	rm -f $(NAME)
-	rm -rf $(NAME).dsym
 
 re: fclean all

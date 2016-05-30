@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:43 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/28 17:58:28 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 16:29:53 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	init_draw(t_entlist *l)
 {
-
 	l->i = START;
 	l->j = 0;
 	l->times = 0;
@@ -31,7 +30,7 @@ static int	init_draw(t_entlist *l)
 	return (0);
 }
 
-void	draw(t_entlist *l)
+void		draw(t_entlist *l)
 {
 	t_entry *tmp;
 
@@ -58,7 +57,7 @@ void	draw(t_entlist *l)
 	}
 }
 
-void	print_selected(t_entlist *l)
+void		print_selected(t_entlist *l)
 {
 	t_entry		*tmp;
 	static int	i = 0;
@@ -85,7 +84,7 @@ void	print_selected(t_entlist *l)
 	}
 }
 
-void	check_args(int ac)
+void		check_args(int ac)
 {
 	if (!(ac > 1))
 	{

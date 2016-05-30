@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/28 17:58:33 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/05/30 16:50:30 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,9 @@ void		print_entry_color(t_entlist *l, char *path);
 void		check_args(int ac);
 void		go_down(t_entlist *l);
 void		go_up(t_entlist *l);
+void		go_left(t_entlist *l);
+void		go_right(t_entlist *l);
+void		delete_key(t_entlist *l);
+void		key_handler(unsigned int key, t_entlist *l, int *running);
 
 #endif
