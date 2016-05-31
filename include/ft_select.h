@@ -105,6 +105,7 @@ void				go_left(t_entlist *l);
 void				go_right(t_entlist *l);
 void				delete_key(t_entlist *l);
 void				key_handler(unsigned int key, t_entlist *l, int *running);
-void				select_specific(t_entlist *l, int value);
+//void				select_specific(t_entlist *l, int value);
+void		select_specific(t_entlist *l, int value, int v);
 
 #endif

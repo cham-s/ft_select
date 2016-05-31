@@ -36,7 +36,7 @@ void		select_all(t_entlist *l, int value)
 	}
 }
 
-void		select_specific(t_entlist *l, int value)
+void		select_specific(t_entlist *l, int value, int v)
 {
 	t_entry *tmp;
 	int		i;
@@ -45,7 +45,7 @@ void		select_specific(t_entlist *l, int value)
 	tmp = l->head;
 	while (i < l->ac)
 	{
-		if (tmp->t == value)
+		if (tmp->t == value && v)
 			tmp->hl = 1;
 		else
 			tmp->hl = 0;
