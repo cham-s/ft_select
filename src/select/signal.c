@@ -45,8 +45,10 @@ void		sig_handler(int sig)
 	if (sig == SIGWINCH)
 	{
 		ioctl(l->fd, TIOCGWINSZ, &w);
-		l->row = w.ws_row + START;
-		l->col = w.ws_col;
+		l->height = w.ws_row;
+		l->width = w.ws_col;
+		l->row = l->height - START - PAD;
+		l->col = l->width - SPACE * 2;
 		draw(l);
 	}
 	else if (sig == SIGTSTP || sig == SIGCONT)

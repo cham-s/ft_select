@@ -12,26 +12,47 @@
 
 #include "ft_select.h"
 
-static void	printf_menu(t_enlist *l)
+static void	draw_at_location(int x , int y, char *str, int fd)
 {
-	ft_putstr_fd(tgoto(tgetstr("cm", NULL),
-						l->col / 2 - SPACE, l->row / 2), l->fd);
-	ft_putstr_fd("window too small", l->fd);
+	ft_putstr_fd(tgoto(tgetstr("cm", NULL), x, y), fd);
+	ft_putstr_fd(str, fd);
+}
+
+void		draw_title(t_entlist *l)
+{
+	int i;
+	int start;
+
+	i = 0;
+	start = l->width / 2 - ((int)ft_strlen("FT SELECT") / 2);
+	ft_putstr_fd(tgetstr("ho", NULL), l->fd);
+	ft_putstr_fd("\e[45m", l->fd);
+	while (i < start)
+	{
+		ft_putchar_fd(' ', l->fd);
+		i += 1;
+	}
+	ft_putstr_fd("FT_SELECT", l->fd);
+	i += (int)ft_strlen("FT_SELECT");
+	while (i < l->width)
+	{
+		ft_putchar_fd(' ', l->fd);
+		i += 1;
+	}
+	ft_putstr_fd("\e[0m", l->fd);
 }
 
 static int	init_draw(t_entlist *l)
 {
 	l->i = START;
-	l->j = PAD;
+	l->j = SPACE;
 	l->times = 0;
 	ft_putstr_fd(tgetstr("ho", NULL), l->fd);
 	ft_putstr_fd(tgetstr("cd", NULL), l->fd);
 	l->col_max = nbr_col(l);
 	if (check_window_size(l) < 0)
 	{
-		ft_putstr_fd(tgoto(tgetstr("cm", NULL),
-							l->col / 2 - SPACE, l->row / 2), l->fd);
-		ft_putstr_fd("window too small", l->fd);
+		draw_at_location(l->col / 2 - SPACE, l->row / 2, "window too small", l->fd);
 		return (-1);
 	}
 	return (0);
@@ -44,9 +65,10 @@ void		draw(t_entlist *l)
 	tmp = l->head;
 	if (init_draw(l) < 0)
 		return ;
+	draw_title(l);
 	while (l->times < l->ac)
 	{
-		if (l->i == l->row - START)
+		if (l->i == l->row + SPACE)
 		{
 			l->i = START;
 			l->j += l->max_len + SPACE;

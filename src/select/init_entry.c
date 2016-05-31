@@ -19,8 +19,10 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	struct winsize	w;
 
 	ioctl(l->fd, TIOCGWINSZ, &w);
-	l->row = w.ws_row + START;
-	l->col = w.ws_col;
+	l->height = w.ws_row;
+	l->width = w.ws_col;
+	l->row = l->height - START - PAD;
+	l->col = l->width - SPACE * 2;
 	l->head = NULL;
 	l->list = NULL;
 	l->ac = ac - 1;

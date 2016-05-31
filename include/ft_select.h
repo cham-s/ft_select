@@ -35,8 +35,8 @@
 # define K_A		'a'
 
 # define START		2
-# define SPACE		4
-# define PAD		4
+# define SPACE		3	
+# define PAD		4	
 
 # define MAX_SIGNAL 32
 
@@ -54,6 +54,8 @@ typedef	struct		s_entlist
 	t_entry			*head;
 	t_entry			*list;
 	int				fd;
+	int				height;
+	int				width;
 	int				row;
 	int				col;
 	int				col_max;
