@@ -31,6 +31,7 @@ t_entry		*newentry(char *str)
 	new->line = ft_strdup(str);
 	new->hl = 0;
 	new->us = 0;
+	new->t = 0;
 	return (new);
 }
 

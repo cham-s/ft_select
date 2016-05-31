@@ -26,7 +26,7 @@ void		draw_title(t_entlist *l)
 	i = 0;
 	start = l->width / 2 - ((int)ft_strlen("FT SELECT") / 2);
 	ft_putstr_fd(tgetstr("ho", NULL), l->fd);
-	ft_putstr_fd("\e[45m", l->fd);
+	ft_putstr_fd("\e[104m", l->fd);
 	while (i < start)
 	{
 		ft_putchar_fd(' ', l->fd);
@@ -78,7 +78,7 @@ void		draw(t_entlist *l)
 		if (tmp->hl)
 			ft_putstr_fd(tgetstr("mr", NULL), l->fd);
 		ft_putstr_fd(tgoto(tgetstr("cm", NULL), l->j, l->i), l->fd);
-		print_entry_color(l, tmp->line);
+		print_entry_color(l, tmp);
 		ft_putstr_fd(tgetstr("me", NULL), l->fd);
 		tmp = tmp->next;
 		l->i++;

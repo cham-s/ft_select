@@ -48,6 +48,12 @@ static void	special_keys(unsigned int key, t_entlist *l)
 		l->sel_v = l->sel_v == 0 ? 1 : 0;
 		select_all(l, l->sel_v);
 	}
+	else if (key == K_R)
+		select_specific(l, R);
+	else if (key == K_D)
+		select_specific(l, D);
+	else if (key == K_X)
+		select_specific(l, X);
 }
 
 void		key_handler(unsigned int key, t_entlist *l, int *running)

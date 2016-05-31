@@ -12,28 +12,36 @@
 
 #include "ft_select.h"
 
-void	print_entry_color(t_entlist *l, char *path)
+void	print_entry_color(t_entlist *l, t_entry *e)
 {
 	struct stat	file;
 
-	if (stat(path, &file) < 0)
-		ft_putstr_fd(path, l->fd);
+	if (stat(e->line, &file) < 0)
+	{
+		e->t = R;
+		ft_putstr_fd(e->line, l->fd);
+	}
 	else
 	{
 		if (file.st_mode & S_IXUSR && !S_ISDIR(file.st_mode))
 		{
+			e->t = X;
 			ft_putstr_fd("\e[31m", l->fd);
-			ft_putstr_fd(path, l->fd);
+			ft_putstr_fd(e->line, l->fd);
 			ft_putstr_fd("\e[0m", l->fd);
 		}
 		else if (S_ISDIR(file.st_mode))
 		{
+			e->t = D;
 			ft_putstr_fd("\e[34m", l->fd);
-			ft_putstr_fd(path, l->fd);
+			ft_putstr_fd(e->line, l->fd);
 			ft_putstr_fd("\e[0m", l->fd);
 		}
 		else
-			ft_putstr_fd(path, l->fd);
+		{
+			e->t = R;
+			ft_putstr_fd(e->line, l->fd);
+		}
 	}
 }
 

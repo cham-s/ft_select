@@ -33,10 +33,17 @@
 # define K_BKSPC	127
 # define K_SPACE	32
 # define K_A		'a'
+# define K_R		'r'
+# define K_D		'd'
+# define K_X		'x'
 
 # define START		2
 # define SPACE		3	
 # define PAD		4	
+
+# define X			1			
+# define R			2			
+# define D			3			
 
 # define MAX_SIGNAL 32
 
@@ -45,6 +52,7 @@ typedef struct		s_entry
 	char			*line;
 	int				hl;
 	int				us;
+	int				t;
 	struct s_entry	*next;
 	struct s_entry	*prev;
 }					t_entry;
@@ -89,7 +97,7 @@ int					check_window_size(t_entlist *l);
 int					nbr_col(t_entlist *l);
 void				clean_screen(t_entlist *l);
 void				select_all(t_entlist *l, int value);
-void				print_entry_color(t_entlist *l, char *path);
+void				print_entry_color(t_entlist *l, t_entry *e);
 void				check_args(int ac);
 void				go_down(t_entlist *l);
 void				go_up(t_entlist *l);
@@ -97,5 +105,6 @@ void				go_left(t_entlist *l);
 void				go_right(t_entlist *l);
 void				delete_key(t_entlist *l);
 void				key_handler(unsigned int key, t_entlist *l, int *running);
+void				select_specific(t_entlist *l, int value);
 
 #endif

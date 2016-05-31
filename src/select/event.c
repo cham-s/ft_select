@@ -36,6 +36,24 @@ void		select_all(t_entlist *l, int value)
 	}
 }
 
+void		select_specific(t_entlist *l, int value)
+{
+	t_entry *tmp;
+	int		i;
+
+	i = 0;
+	tmp = l->head;
+	while (i < l->ac)
+	{
+		if (tmp->t == value)
+			tmp->hl = 1;
+		else
+			tmp->hl = 0;
+		tmp = tmp->next;
+		i++;
+	}
+}
+
 static void	free_entry(t_entry *e)
 {
 	free(e->line);
