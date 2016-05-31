@@ -45,6 +45,8 @@
 # define R			2			
 # define D			3			
 
+# define D_MENU_L	155
+
 # define MAX_SIGNAL 32
 
 typedef struct		s_entry

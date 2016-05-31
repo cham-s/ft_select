@@ -45,10 +45,15 @@ void		draw_title(t_entlist *l)
 void		draw_help(t_entlist *l)
 {
 	ft_putstr_fd(tgoto(tgetstr("cm", NULL), 0, l->height - 4), l->fd);
-	ft_putstr_fd("\e[96mCommands:\e[0m\n\t\e[96mSPACE\e[0m select/unselect   ", l->fd);
-	ft_putstr_fd("\e[96mX\e[0m exec file   \e[96mR\e[0m regular file\t", l->fd); 
+	ft_putstr_fd("\e[96mCommands:\e[0m\n\t\e[96mSPACE\e[0m select/unselect   ",
+			l->fd);
+	ft_putstr_fd("\e[96mX\e[0m exec file   \e[96mR\e[0m regular file\t",
+			l->fd); 
 	ft_putstr_fd("\e[96mD\e[0m directory   \e[96mA\e[0m all   ", l->fd); 
-	ft_putstr_fd("\e[96mENTER\e[0m return selected   \e[96mESCAPE\e[0m Quit   \e[96mBKSPC/DEL\e[0m delete", l->fd);
+	ft_putstr_fd("\e[96mENTER\e[0m return selected   \e[96mESCAPE\e[0m Quit   ",
+			l->fd);
+	ft_putstr_fd("\e[96mBKSPC/DEL\e[0m delete   ", l->fd);
+	ft_putstr_fd("\e[96mARROWS\e[0m move", l->fd);
 }
 
 static int	init_draw(t_entlist *l)
