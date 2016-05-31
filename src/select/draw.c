@@ -42,6 +42,15 @@ void		draw_title(t_entlist *l)
 	ft_putstr_fd("\e[0m", l->fd);
 }
 
+void		draw_help(t_entlist *l)
+{
+	ft_putstr_fd(tgoto(tgetstr("cm", NULL), 0, l->height - 4), l->fd);
+	ft_putstr_fd("\e[96mCommands:\e[0m\n\t\e[96mSPACE\e[0m select/unselect   ", l->fd);
+	ft_putstr_fd("\e[96mX\e[0m exec file   \e[96mR\e[0m regular file\t", l->fd); 
+	ft_putstr_fd("\e[96mD\e[0m directory   \e[96mA\e[0m all   ", l->fd); 
+	ft_putstr_fd("\e[96mENTER\e[0m return selected   \e[96mESCAPE\e[0m Quit   \e[96mBKSPC/DEL\e[0m delete", l->fd);
+}
+
 static int	init_draw(t_entlist *l)
 {
 	l->i = START;
@@ -68,7 +77,7 @@ void		draw(t_entlist *l)
 	draw_title(l);
 	while (l->times < l->ac)
 	{
-		if (l->i == l->row + SPACE)
+		if (l->i == l->row + SPACE - START)
 		{
 			l->i = START;
 			l->j += l->max_len + SPACE;
@@ -84,6 +93,7 @@ void		draw(t_entlist *l)
 		l->i++;
 		l->times++;
 	}
+	draw_help(l);
 }
 
 void		print_selected(t_entlist *l)

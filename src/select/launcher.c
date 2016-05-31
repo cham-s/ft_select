@@ -29,7 +29,7 @@ void	go_right(t_entlist *l)
 
 	i = 0;
 	l->list->us = 0;
-	while (i < l->row)
+	while (i < l->row + 1)
 	{
 		if (l->list->next == l->head)
 			break ;
@@ -45,7 +45,7 @@ void	go_left(t_entlist *l)
 
 	i = 0;
 	l->list->us = 0;
-	while (i < l->row)
+	while (i < l->row + 1)
 	{
 		if (l->list->prev == l->head)
 			break ;
