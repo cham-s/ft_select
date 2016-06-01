@@ -46,5 +46,5 @@ int			nbr_col(t_entlist *l)
 	else
 		cols_int = (int)cols_float + 1;
 	cols_int = (l->max_len + SPACE) * cols_int;
-	return (cols_int - SPACE);
+	return (cols_int);
 }
