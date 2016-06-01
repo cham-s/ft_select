@@ -66,7 +66,8 @@ static int	init_draw(t_entlist *l)
 	l->col_max = nbr_col(l);
 	if (check_window_size(l) < 0)
 	{
-		draw_at_location(l->col / 2 - SPACE, l->row / 2, "window too small", l->fd);
+		draw_at_location(l->col / 2 - SPACE, l->row / 2, "window too small",
+				l->fd);
 		return (-1);
 	}
 	return (0);

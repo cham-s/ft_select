@@ -14,6 +14,8 @@
 
 int			check_window_size(t_entlist *l)
 {
+	if (l->height < 8)
+		return (-1);
 	if (D_MENU_L > l->width)
 		return (-1);
 	if (l->col_max >= l->width)

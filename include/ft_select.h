@@ -38,12 +38,12 @@
 # define K_X		'x'
 
 # define START		2
-# define SPACE		3	
-# define PAD		4	
+# define SPACE		3
+# define PAD		4
 
-# define X			1			
-# define R			2			
-# define D			3			
+# define X			1
+# define R			2
+# define D			3
 
 # define D_MENU_L	170
 
