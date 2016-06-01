@@ -29,10 +29,10 @@ void	go_right(t_entlist *l)
 
 	i = 0;
 	l->list->us = 0;
-	while (i < l->row + 1)
+	while (i < l->row - 1)
 	{
-		if (l->list->next == l->head)
-			break ;
+		/* if (l->list->next == l->head) */
+		/* 	break ; */
 		l->list = l->list->next;
 		i++;
 	}
@@ -45,10 +45,10 @@ void	go_left(t_entlist *l)
 
 	i = 0;
 	l->list->us = 0;
-	while (i < l->row + 1)
+	while (i < l->row - 1)
 	{
-		if (l->list->prev == l->head)
-			break ;
+		/* if (l->list->prev == l->head) */
+		/* 	break ; */
 		l->list = l->list->prev;
 		i++;
 	}
