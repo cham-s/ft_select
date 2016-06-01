@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 16:32:54 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 18:48:16 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:08:01 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,6 @@ void		select_all(t_entlist *l, int value)
 	while (i < l->ac)
 	{
 		tmp->hl = value;
-		tmp = tmp->next;
-		i++;
-	}
-}
-
-void		select_specific(t_entlist *l, int value, int v)
-{
-	t_entry *tmp;
-	int		i;
-
-	i = 0;
-	tmp = l->head;
-	while (i < l->ac)
-	{
-		if (tmp->t == value && v)
-			tmp->hl = 1;
-		else
-			tmp->hl = 0;
 		tmp = tmp->next;
 		i++;
 	}

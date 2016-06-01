@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 16:33:44 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 17:52:18 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:17:53 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static void	special_keys(unsigned int key, t_entlist *l)
 		l->list->hl = l->list->hl == 0 ? 1 : 0;
 		go_down(l);
 	}
-	else if (key == K_DEL || key == K_BKSPC)
-		delete_key(l);
 	else if (key == K_A)
 	{
 		l->sel_v = l->sel_v == 0 ? 1 : 0;
@@ -84,6 +82,8 @@ void		key_handler(unsigned int key, t_entlist *l, int *running)
 			go_right(l);
 		else if (key == K_LEFT)
 			go_left(l);
+		else if (key == K_DEL || key == K_BKSPC)
+			delete_key(l);
 		else
 			special_keys(key, l);
 	}

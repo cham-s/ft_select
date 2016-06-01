@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/30 17:19:42 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 18:38:39 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:11:18 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	init_entlist(t_entlist *l, char **av, int ac)
 	l->list = NULL;
 	l->ac = ac - 1;
 	l->max_len = 0;
-	l->sel_v = 0;
 	getargs(ac, av, l);
 	l->head = l->list;
 	tmp = l->list;
@@ -46,6 +45,7 @@ void	addentry(t_entlist *l, t_entry *new)
 {
 	t_entry *tmp;
 
+	l->sel_v = 0;
 	tmp = l->list;
 	if (!tmp)
 		l->list = new;

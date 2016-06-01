@@ -6,7 +6,7 @@
 /*   By: cattouma <cattouma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/23 16:33:39 by cattouma          #+#    #+#             */
-/*   Updated: 2016/05/30 19:00:19 by cattouma         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:01:04 by cattouma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ void				go_left(t_entlist *l);
 void				go_right(t_entlist *l);
 void				delete_key(t_entlist *l);
 void				key_handler(unsigned int key, t_entlist *l, int *running);
-//void				select_specific(t_entlist *l, int value);
-void		select_specific(t_entlist *l, int value, int v);
+void				select_specific(t_entlist *l, int value, int v);
+void				draw_title(t_entlist *l);
+void				draw_help(t_entlist *l);
 
 #endif
